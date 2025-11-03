@@ -1,0 +1,32 @@
+fragment StaticPageFields on StaticPage {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  # Campos que você definiu no Contentful
+  tituloInterno
+  tituloExterno
+  slug
+  richText {
+    json
+    links {
+      entries {
+        block {
+          # Este fragmento é para lidar com embeds, como RichImage
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+
+# Query principal para a sua página estática
+query staticPage($slug: String!, $locale: String, $preview: Boolean) {
+  # Nota: 'pageCollection' é o nome que a Contentful dá ao modelo 'Page'
+  staticPageCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
+    items {
+      ...StaticPageFields
+    }
+  }
+}

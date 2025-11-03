@@ -19,8 +19,7 @@ export const Footer = () => {
             href="https://www.contentful.com"
             rel="noopener noreferrer"
             target="_blank"
-            className="text-blue500"
-          >
+            className="text-blue500">
             Contentful
           </Link>
         </div>

@@ -17,6 +17,7 @@ export const Header = () => {
           <Link href="/" title={t('common.homepage')}>
             <BlogLogo />
           </Link>
+          <Link href="/bose-qc-ultra">Bose QC Ultra</Link>
           <LanguageSelector />
         </Container>
       </nav>
