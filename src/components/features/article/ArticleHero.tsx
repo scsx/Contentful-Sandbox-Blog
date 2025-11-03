@@ -34,8 +34,7 @@ export const ArticleHero = ({
       className={twMerge(
         `flex flex-col overflow-hidden rounded-2xl border border-gray300 shadow-lg`,
         isReversedLayout ? 'lg:flex-row-reverse' : 'lg:flex-row',
-      )}
-    >
+      )}>
       <div className="flex-1 basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
         {article.featuredImage && (
           <CtfImage
@@ -45,7 +44,7 @@ export const ArticleHero = ({
         )}
       </div>
 
-      <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
+      <div className="relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:px-16 lg:py-12 xl:px-24">
         <div className="mb-2 flex flex-wrap items-center">
           <ArticleAuthor article={article} />
           {isFeatured && (
@@ -53,8 +52,7 @@ export const ArticleHero = ({
               className={twMerge(
                 'ml-auto pl-2 lg:absolute lg:top-8 xl:top-12',
                 isReversedLayout ? 'lg:left-6 xl:left-12' : 'lg:right-6 xl:right-12',
-              )}
-            >
+              )}>
               {t('article.featured')}
             </ArticleLabel>
           )}
@@ -63,8 +61,7 @@ export const ArticleHero = ({
               'ml-auto hidden pl-2 text-xs text-gray600',
               isReversedLayout ? 'lg:block' : '',
             )}
-            {...inspectorProps({ fieldId: 'publishedDate' })}
-          >
+            {...inspectorProps({ fieldId: 'publishedDate' })}>
             <FormatDate date={publishedDate} />
           </div>
         </div>
@@ -75,10 +72,10 @@ export const ArticleHero = ({
           </p>
         )}
         <div
-          className={twMerge('mt-2 text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
-          {...inspectorProps({ fieldId: 'publishedDate' })}
-        >
+          className={twMerge('mt-2 flex text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
+          {...inspectorProps({ fieldId: 'publishedDate' })}>
           <FormatDate date={publishedDate} />
+          {article.category && <span className='ml-4 text-blue500'>{article.category.name}</span>}
         </div>
       </div>
     </div>

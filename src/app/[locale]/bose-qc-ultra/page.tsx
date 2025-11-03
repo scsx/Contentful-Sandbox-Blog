@@ -1,10 +1,8 @@
-// src/app/[locale]/bose-qc-ultra/page.tsx
-
 import type { Metadata } from 'next';
 import { client } from '@src/lib/client';
 import { notFound } from 'next/navigation';
-
-// O slug que estamos a testar
+import RichText from '@src/components/shared/rich-text/RichText';
+// Dizer ao ctf qual a página.
 const PAGE_SLUG = 'bose-qc-ultra';
 
 // --- Função Assíncrona para Busca de Dados ---
@@ -21,11 +19,6 @@ async function getPageData(locale: string) {
     // 3. Extrai o item (o primeiro post da coleção)
     const pageContent = data.staticPageCollection?.items?.[0];
 
-    // 4. LOG NO CONSOLE (Verificação de Dados!)
-    console.log('--- DADOS RECEBIDOS DO CONTENTFUL ---');
-    console.log(pageContent);
-    console.log('-------------------------------------');
-
     return pageContent;
   } catch (error) {
     console.error('Erro ao buscar dados do Contentful:', error);
@@ -39,26 +32,19 @@ export default async function StaticPage({ params }: { params: { locale: string 
 
   // Se a busca falhar ou retornar null
   if (!pageContent) {
-    // Isso vai para o terminal
     console.log(`Página com slug ${PAGE_SLUG} não encontrada ou erro de busca.`);
     return notFound();
   }
 
   // --- Renderização da UI (com dados do console) ---
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="w-1/2 mx-auto px-4 py-16">
       {/* 5. Usamos o Título que definimos no Contentful (tituloExterno) */}
       <h1 className="mb-6 text-4xl font-bold">{pageContent.tituloExterno}</h1>
-
-      {/* Apenas um texto de placeholder enquanto verifica o console */}
-      <p className="text-gray-700">
-        Dados do Contentful buscados. Verifique o **TERMINAL** para ver o objeto completo.
-      </p>
-
       {pageContent.richText && (
-        <pre className="bg-gray-100 max-w-full overflow-auto rounded p-4 text-xs">
-          {JSON.stringify(pageContent.richText.json, null, 2)}
-        </pre>
+        <div className="prose max-w-none">
+          <RichText content={pageContent.richText.json} />
+        </div>
       )}
     </div>
   );

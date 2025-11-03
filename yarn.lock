@@ -1013,14 +1013,14 @@
     json-pointer "^0.6.2"
     lodash.isequal "^4.5.0"
 
-"@contentful/rich-text-react-renderer@16.1.5":
+"@contentful/rich-text-react-renderer@^16.1.5":
   version "16.1.5"
   resolved "https://registry.npmjs.org/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-16.1.5.tgz"
   integrity sha512-5iGG70YVH1f0zcsG7zKOCHdF5zHo38dpCXdAw5gjPpJkI5MTI200KUKU+q0B55Bdp4PzFQr6EcTSUI+k6jluyw==
   dependencies:
     "@contentful/rich-text-types" "^17.2.4"
 
-"@contentful/rich-text-types@^17.0.0", "@contentful/rich-text-types@^17.2.4", "@contentful/rich-text-types@17.2.4":
+"@contentful/rich-text-types@^17.0.0", "@contentful/rich-text-types@^17.2.4":
   version "17.2.4"
   resolved "https://registry.npmjs.org/@contentful/rich-text-types/-/rich-text-types-17.2.4.tgz"
   integrity sha512-3y456l+x5aPzqcvjpG6L66sIkfH66rBl1QtGKexgJ3Nvd6k4ORvpAJ6gMDBz3WMAYvXGrVZMyhlFE0e6UdHngA==

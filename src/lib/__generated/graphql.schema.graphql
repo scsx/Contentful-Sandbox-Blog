@@ -137,6 +137,85 @@ enum AssetOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category)
+"""
+type Category implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): CategoryLinkingCollections
+  name(locale: String): String
+  slug(locale: String): String
+  sys: Sys!
+}
+
+type CategoryCollection {
+  items: [Category]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input CategoryFilter {
+  AND: [CategoryFilter]
+  OR: [CategoryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}
+
+type CategoryLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageBlogPostCollection(limit: Int = 100, locale: String, order: [CategoryLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
+}
+
+enum CategoryLinkingCollectionsPageBlogPostCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  publishedDate_ASC
+  publishedDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum CategoryOrder {
+  name_ASC
+  name_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentAuthor)
 """
 type ComponentAuthor implements Entry & _Node {
@@ -635,6 +714,7 @@ scalar JSON
 type PageBlogPost implements Entry & _Node {
   _id: ID!
   author(locale: String, preview: Boolean, where: ComponentAuthorFilter): ComponentAuthor
+  category(locale: String, preview: Boolean, where: CategoryFilter): Category
   content(locale: String): PageBlogPostContent
   contentfulMetadata: ContentfulMetadata!
   featuredImage(locale: String, preview: Boolean): Asset
@@ -701,6 +781,8 @@ input PageBlogPostFilter {
   OR: [PageBlogPostFilter]
   author: cfComponentAuthorNestedFilter
   author_exists: Boolean
+  category: cfCategoryNestedFilter
+  category_exists: Boolean
   content_contains: String
   content_exists: Boolean
   content_not_contains: String
@@ -898,6 +980,8 @@ type Query {
   _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  category(id: String!, locale: String, preview: Boolean): Category
+  categoryCollection(limit: Int = 100, locale: String, order: [CategoryOrder], preview: Boolean, skip: Int = 0, where: CategoryFilter): CategoryCollection
   componentAuthor(id: String!, locale: String, preview: Boolean): ComponentAuthor
   componentAuthorCollection(limit: Int = 100, locale: String, order: [ComponentAuthorOrder], preview: Boolean, skip: Int = 0, where: ComponentAuthorFilter): ComponentAuthorCollection
   componentRichImage(id: String!, locale: String, preview: Boolean): ComponentRichImage
@@ -1104,6 +1188,27 @@ interface _Node {
   _id: ID!
 }
 
+input cfCategoryNestedFilter {
+  AND: [cfCategoryNestedFilter]
+  OR: [cfCategoryNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}
+
 input cfComponentAuthorNestedFilter {
   AND: [cfComponentAuthorNestedFilter]
   OR: [cfComponentAuthorNestedFilter]
@@ -1172,6 +1277,7 @@ input cfPageBlogPostNestedFilter {
   AND: [cfPageBlogPostNestedFilter]
   OR: [cfPageBlogPostNestedFilter]
   author_exists: Boolean
+  category_exists: Boolean
   content_contains: String
   content_exists: Boolean
   content_not_contains: String

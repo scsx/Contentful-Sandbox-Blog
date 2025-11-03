@@ -14,6 +14,13 @@ fragment ReferencePageBlogPostFields on PageBlogPost {
   featuredImage {
     ...ImageFields
   }
+  category {
+    name
+    slug
+    sys {
+      id
+    }
+  }
 }
 
 fragment PageBlogPostFields on PageBlogPost {
@@ -35,6 +42,13 @@ fragment PageBlogPostFields on PageBlogPost {
   shortDescription
   featuredImage {
     ...ImageFields
+  }
+  category {
+    name
+    slug
+    sys {
+      id
+    }
   }
   content {
     json

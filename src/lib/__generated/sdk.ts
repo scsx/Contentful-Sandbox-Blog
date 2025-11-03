@@ -242,6 +242,121 @@ export enum AssetOrder {
   WidthDesc = 'width_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category) */
+export type Category = Entry & _Node & {
+  __typename?: 'Category';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<CategoryLinkingCollections>;
+  name?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category) */
+export type CategoryLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category) */
+export type CategoryNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category) */
+export type CategorySlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CategoryCollection = {
+  __typename?: 'CategoryCollection';
+  items: Array<Maybe<Category>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type CategoryFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CategoryFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CategoryFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  name_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type CategoryLinkingCollections = {
+  __typename?: 'CategoryLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+};
+
+
+export type CategoryLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type CategoryLinkingCollectionsPageBlogPostCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<CategoryLinkingCollectionsPageBlogPostCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum CategoryLinkingCollectionsPageBlogPostCollectionOrder {
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  PublishedDateAsc = 'publishedDate_ASC',
+  PublishedDateDesc = 'publishedDate_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum CategoryOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 /** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentAuthor) */
 export type ComponentAuthor = Entry & _Node & {
   __typename?: 'ComponentAuthor';
@@ -850,6 +965,7 @@ export type PageBlogPost = Entry & _Node & {
   __typename?: 'PageBlogPost';
   _id: Scalars['ID']['output'];
   author?: Maybe<ComponentAuthor>;
+  category?: Maybe<Category>;
   content?: Maybe<PageBlogPostContent>;
   contentfulMetadata: ContentfulMetadata;
   featuredImage?: Maybe<Asset>;
@@ -870,6 +986,14 @@ export type PageBlogPostAuthorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ComponentAuthorFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost) */
+export type PageBlogPostCategoryArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<CategoryFilter>;
 };
 
 
@@ -1001,6 +1125,8 @@ export type PageBlogPostFilter = {
   OR?: InputMaybe<Array<InputMaybe<PageBlogPostFilter>>>;
   author?: InputMaybe<CfComponentAuthorNestedFilter>;
   author_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  category?: InputMaybe<CfCategoryNestedFilter>;
+  category_exists?: InputMaybe<Scalars['Boolean']['input']>;
   content_contains?: InputMaybe<Scalars['String']['input']>;
   content_exists?: InputMaybe<Scalars['Boolean']['input']>;
   content_not_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1259,6 +1385,8 @@ export type Query = {
   _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  category?: Maybe<Category>;
+  categoryCollection?: Maybe<CategoryCollection>;
   componentAuthor?: Maybe<ComponentAuthor>;
   componentAuthorCollection?: Maybe<ComponentAuthorCollection>;
   componentRichImage?: Maybe<ComponentRichImage>;
@@ -1303,6 +1431,23 @@ export type QueryAssetCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AssetFilter>;
+};
+
+
+export type QueryCategoryArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryCategoryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<CategoryOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CategoryFilter>;
 };
 
 
@@ -1656,6 +1801,27 @@ export type _Node = {
   _id: Scalars['ID']['output'];
 };
 
+export type CfCategoryNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfCategoryNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfCategoryNestedFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  name_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
 export type CfComponentAuthorNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfComponentAuthorNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfComponentAuthorNestedFilter>>>;
@@ -1724,6 +1890,7 @@ export type CfPageBlogPostNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfPageBlogPostNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfPageBlogPostNestedFilter>>>;
   author_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  category_exists?: InputMaybe<Scalars['Boolean']['input']>;
   content_contains?: InputMaybe<Scalars['String']['input']>;
   content_exists?: InputMaybe<Scalars['Boolean']['input']>;
   content_not_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1784,7 +1951,7 @@ export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', 
   ) | null, featuredImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null };
+  ) | null, category?: { __typename?: 'Category', name?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } } | null };
 
 export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalName?: string | null, slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
     { __typename?: 'ComponentSeo' }
@@ -1795,7 +1962,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, featuredImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
+  ) | null, category?: { __typename?: 'Category', name?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } } | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
@@ -1881,7 +2048,7 @@ export type SitemapPagesQuery = (
   & SitemapPagesFieldsFragment
 );
 
-export type StaticPageFieldsFragment = { __typename: 'StaticPage', tituloInterno?: string | null, tituloExterno?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, richText?: { __typename?: 'StaticPageRichText', json: any, links: { __typename?: 'StaticPageRichTextLinks', entries: { __typename?: 'StaticPageRichTextEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
+export type StaticPageFieldsFragment = { __typename: 'StaticPage', tituloInterno?: string | null, tituloExterno?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, richText?: { __typename?: 'StaticPageRichText', json: any, links: { __typename?: 'StaticPageRichTextLinks', entries: { __typename?: 'StaticPageRichTextEntries', block: Array<{ __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
         ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | null> } } } | null };
@@ -1970,6 +2137,13 @@ export const ReferencePageBlogPostFieldsFragmentDoc = gql`
   featuredImage {
     ...ImageFields
   }
+  category {
+    name
+    slug
+    sys {
+      id
+    }
+  }
 }
     `;
 export const PageBlogPostFieldsFragmentDoc = gql`
@@ -1992,6 +2166,13 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   shortDescription
   featuredImage {
     ...ImageFields
+  }
+  category {
+    name
+    slug
+    sys {
+      id
+    }
   }
   content {
     json
