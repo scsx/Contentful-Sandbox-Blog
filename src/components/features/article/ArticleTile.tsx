@@ -49,7 +49,7 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
             <div className="flex">
               <ArticleAuthor article={article} />
               {article.category && (
-                <span className="ml-4 mt-2 text-blue500">{article.category.name}</span>
+                <span className="ml-4 mt-2 text-xs font-bold leading-none text-blue500">{article.category.name}</span>
               )}
             </div>
             <div

@@ -6,7 +6,7 @@ import {
 } from '@contentful/live-preview/react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-
+import Link from 'next/link';
 import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
 import { ArticleLabel } from '@src/components/features/article/ArticleLabel';
 import { CtfImage } from '@src/components/features/contentful';
@@ -75,7 +75,13 @@ export const ArticleHero = ({
           className={twMerge('mt-2 flex text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
           {...inspectorProps({ fieldId: 'publishedDate' })}>
           <FormatDate date={publishedDate} />
-          {article.category && <span className='ml-4 text-blue500'>{article.category.name}</span>}
+          {article.category?.name && (
+            <Link
+              href={`/categories/${article.category.slug}`}
+              className="ml-4 mt-0.5 text-xs font-bold leading-none text-blue500 hover:underline">
+              {article.category.name}
+            </Link>
+          )}
         </div>
       </div>
     </div>
