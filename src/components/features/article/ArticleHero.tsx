@@ -4,14 +4,17 @@ import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from '@contentful/live-preview/react';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-import Link from 'next/link';
+
 import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
 import { ArticleLabel } from '@src/components/features/article/ArticleLabel';
 import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+
+import { CategoryTag } from '../../shared/category-tag/CategoryTag';
 
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
@@ -60,37 +63,37 @@ export const ArticleHero = ({
           )}
           <div
             className={twMerge(
-              'ml-auto hidden pl-2 text-xs text-gray600',
+              'ml-auto hidden pl-2 text-gray600',
               isReversedLayout ? 'lg:block' : '',
             )}
             {...inspectorProps({ fieldId: 'publishedDate' })}>
             <FormatDate date={publishedDate} />
           </div>
         </div>
-        <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
+        <h1 {...inspectorProps({ fieldId: 'title' })} className="my-4 font-bold leading-none">
+          {title}
+        </h1>
         {shortDescription && (
-          <p className="mt-2" {...inspectorProps({ fieldId: 'shortDescription' })}>
+          <p className="mt-2 text-xl" {...inspectorProps({ fieldId: 'shortDescription' })}>
             {shortDescription}
           </p>
         )}
         <div
-          className={twMerge('mt-2 flex text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
+          className={twMerge(
+            'font-bold mt-2 flex text-gray600',
+            isReversedLayout ? 'lg:hidden' : '',
+          )}
           {...inspectorProps({ fieldId: 'publishedDate' })}>
           <FormatDate date={publishedDate} />
         </div>
-        {article.category?.name && (
-          <p className="mt-4">
-            Submitted under:{' '}
-            {isArticlePage ? (
-              <Link
-                href={`/categories/${article.category.slug}`}
-                className="font-bold leading-none text-blue500 hover:underline">
-                {article.category.name}
-              </Link>
-            ) : (
-              <span className="font-bold leading-none">{article.category.name}</span>
-            )}
-          </p>
+        {article.category?.name && article.category?.slug && (
+          <div className='mt-4'>
+            <CategoryTag
+              categoryName={article.category.name}
+              categorySlug={article.category.slug}
+              isLink={isArticlePage}
+            />
+          </div>
         )}
       </div>
     </div>

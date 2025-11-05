@@ -11,6 +11,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
 import { CtfImage } from '@src/components/features/contentful';
+import { CategoryTag } from '@src/components/shared/category-tag/CategoryTag';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
@@ -47,12 +48,14 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
           <div className="mt-auto flex items-center">
             <div className="flex">
               <ArticleAuthor article={article} />
-              {article.category && (
-                <span
-                  className="ml-4 mt-2 text-xs font-bold leading-none text-gray700"
-                  {...inspectorProps({ fieldId: 'category' })}>
-                  {article.category.name}
-                </span>
+              {article.category?.name && article.category?.slug && (
+                <div className="mt-1 ml-2">
+                  <CategoryTag
+                    categoryName={article.category.name}
+                    categorySlug={article.category.slug}
+                    isLink={false}
+                  />
+                </div>
               )}
             </div>
             <div
