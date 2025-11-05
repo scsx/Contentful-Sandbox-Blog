@@ -8,6 +8,7 @@
   },
   "common": {
     "regionalSettings": "Regional Settings",
+    "home": "Home",
     "homepage": "Homepage",
     "language": "Language",
     "languageDrawer": "Toggle language drawer"

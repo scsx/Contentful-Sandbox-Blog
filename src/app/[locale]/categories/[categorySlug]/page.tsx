@@ -60,15 +60,11 @@ export default async function CategoryPage({
       <Container className="py-10">
         <Breadcrumbs
           items={[
-            { label: t('home') || 'Home', href: `/${locale}` },
+            { label: t('common.home') || 'Home', href: `/${locale}` },
             { label: categoryName || categorySlug, href: `/${locale}/categories/${categorySlug}` },
           ]}
           className="mb-8 mt-4"
         />
-
-        <h1 className="mb-8 text-3xl font-bold">
-          {t('category.category') || 'Category'}: {categoryName || categorySlug}
-        </h1>
 
         {posts && posts.length > 0 ? (
           <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={posts} />

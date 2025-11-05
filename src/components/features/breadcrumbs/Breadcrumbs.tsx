@@ -28,14 +28,14 @@ export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
               <>
                 <Link
                   href={item.href}
-                  className="hover:text-blue-600 transition duration-150 ease-in-out">
+                  className="text-blue500 transition duration-150 ease-in-out font-bold hover:underline">
                   {item.label}
                 </Link>
                 <span className='ml-2'>/</span>
               </>
             ) : (
               // Página actual, sem link
-              <span className="text-gray-900 font-medium">{item.label}</span>
+              <span className="text-gray-900">{item.label}</span>
             )}
           </li>
         ))}

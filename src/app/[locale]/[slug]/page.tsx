@@ -90,19 +90,19 @@ export default async function Page({ params: { locale, slug } }: BlogPageProps) 
   const categoryName = blogPost.category?.name;
   const categorySlug = blogPost.category?.slug;
   const articleTitle = blogPost.title;
+  const breadcrumbsItems = [
+    { label: t('common.home') || 'Home', href: `/${locale}` },
+    ...(categoryName && categorySlug
+      ? [{ label: categoryName, href: `/${locale}/categories/${categorySlug}` }]
+      : []),
 
+    { label: articleTitle || slug, href: `/${locale}/${slug}` },
+  ];
   return (
     <>
       <Container>
         {categoryName && categorySlug && (
-          <Breadcrumbs
-            items={[
-              { label: t('home') || 'Home', href: `/${locale}` },
-              { label: categoryName, href: `/${locale}/categories/${categorySlug}` },
-              { label: articleTitle || slug, href: `/${locale}/${slug}` },
-            ]}
-            className="mt-8 mb-4"
-          />
+          <Breadcrumbs items={breadcrumbsItems} className="mt-8 mb-4" />
         )}
         <ArticleHero
           article={blogPost}
