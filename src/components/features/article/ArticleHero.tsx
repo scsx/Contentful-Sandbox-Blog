@@ -29,6 +29,8 @@ export const ArticleHero = ({
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = useContentfulLiveUpdates(article);
 
+  console.log(article.category?.name);
+
   return (
     <div
       className={twMerge(
@@ -75,14 +77,17 @@ export const ArticleHero = ({
           className={twMerge('mt-2 flex text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
           {...inspectorProps({ fieldId: 'publishedDate' })}>
           <FormatDate date={publishedDate} />
-          {article.category?.name && (
+        </div>
+        {article.category?.name && (
+          <p className='mt-4'>
+            Submitted under:{' '}
             <Link
               href={`/categories/${article.category.slug}`}
-              className="ml-4 mt-0.5 text-xs font-bold leading-none text-blue500 hover:underline">
+              className="font-bold leading-none text-blue500 hover:underline">
               {article.category.name}
             </Link>
-          )}
-        </div>
+          </p>
+        )}
       </div>
     </div>
   );
