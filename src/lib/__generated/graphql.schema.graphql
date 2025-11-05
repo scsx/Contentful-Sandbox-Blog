@@ -709,6 +709,121 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa)
+"""
+type NotaDeImprensa implements Entry & _Node {
+  _id: ID!
+  body(locale: String): NotaDeImprensaBody
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): NotaDeImprensaLinkingCollections
+  publishDate(locale: String): DateTime
+  slug(locale: String): String
+  sys: Sys!
+  title(locale: String): String
+}
+
+type NotaDeImprensaBody {
+  json: JSON!
+  links: NotaDeImprensaBodyLinks!
+}
+
+type NotaDeImprensaBodyAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type NotaDeImprensaBodyEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type NotaDeImprensaBodyLinks {
+  assets: NotaDeImprensaBodyAssets!
+  entries: NotaDeImprensaBodyEntries!
+  resources: NotaDeImprensaBodyResources!
+}
+
+type NotaDeImprensaBodyResources {
+  block: [NotaDeImprensaBodyResourcesBlock!]!
+  hyperlink: [NotaDeImprensaBodyResourcesHyperlink!]!
+  inline: [NotaDeImprensaBodyResourcesInline!]!
+}
+
+type NotaDeImprensaBodyResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type NotaDeImprensaBodyResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type NotaDeImprensaBodyResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type NotaDeImprensaCollection {
+  items: [NotaDeImprensa]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input NotaDeImprensaFilter {
+  AND: [NotaDeImprensaFilter]
+  OR: [NotaDeImprensaFilter]
+  body_contains: String
+  body_exists: Boolean
+  body_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  publishDate: DateTime
+  publishDate_exists: Boolean
+  publishDate_gt: DateTime
+  publishDate_gte: DateTime
+  publishDate_in: [DateTime]
+  publishDate_lt: DateTime
+  publishDate_lte: DateTime
+  publishDate_not: DateTime
+  publishDate_not_in: [DateTime]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type NotaDeImprensaLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum NotaDeImprensaOrder {
+  publishDate_ASC
+  publishDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry & _Node {
@@ -989,6 +1104,8 @@ type Query {
   componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
   componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, where: ComponentSeoFilter): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  notaDeImprensa(id: String!, locale: String, preview: Boolean): NotaDeImprensa
+  notaDeImprensaCollection(limit: Int = 100, locale: String, order: [NotaDeImprensaOrder], preview: Boolean, skip: Int = 0, where: NotaDeImprensaFilter): NotaDeImprensaCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding

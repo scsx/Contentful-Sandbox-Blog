@@ -1,0 +1,9 @@
+query GetPressReleasesList($locale: String!, $limit: Int!, $order: [NotaDeImprensaOrder]!) {
+  notaDeImprensaCollection(locale: $locale, limit: $limit, order: $order) {
+    items {
+      title
+      slug
+      publishDate
+    }
+  }
+}

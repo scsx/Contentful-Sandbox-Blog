@@ -960,6 +960,168 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']['input']>;
 };
 
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa) */
+export type NotaDeImprensa = Entry & _Node & {
+  __typename?: 'NotaDeImprensa';
+  _id: Scalars['ID']['output'];
+  body?: Maybe<NotaDeImprensaBody>;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<NotaDeImprensaLinkingCollections>;
+  publishDate?: Maybe<Scalars['DateTime']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa) */
+export type NotaDeImprensaBodyArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa) */
+export type NotaDeImprensaLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa) */
+export type NotaDeImprensaPublishDateArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa) */
+export type NotaDeImprensaSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa) */
+export type NotaDeImprensaTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type NotaDeImprensaBody = {
+  __typename?: 'NotaDeImprensaBody';
+  json: Scalars['JSON']['output'];
+  links: NotaDeImprensaBodyLinks;
+};
+
+export type NotaDeImprensaBodyAssets = {
+  __typename?: 'NotaDeImprensaBodyAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type NotaDeImprensaBodyEntries = {
+  __typename?: 'NotaDeImprensaBodyEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type NotaDeImprensaBodyLinks = {
+  __typename?: 'NotaDeImprensaBodyLinks';
+  assets: NotaDeImprensaBodyAssets;
+  entries: NotaDeImprensaBodyEntries;
+  resources: NotaDeImprensaBodyResources;
+};
+
+export type NotaDeImprensaBodyResources = {
+  __typename?: 'NotaDeImprensaBodyResources';
+  block: Array<NotaDeImprensaBodyResourcesBlock>;
+  hyperlink: Array<NotaDeImprensaBodyResourcesHyperlink>;
+  inline: Array<NotaDeImprensaBodyResourcesInline>;
+};
+
+export type NotaDeImprensaBodyResourcesBlock = ResourceLink & {
+  __typename?: 'NotaDeImprensaBodyResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type NotaDeImprensaBodyResourcesHyperlink = ResourceLink & {
+  __typename?: 'NotaDeImprensaBodyResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type NotaDeImprensaBodyResourcesInline = ResourceLink & {
+  __typename?: 'NotaDeImprensaBodyResourcesInline';
+  sys: ResourceSys;
+};
+
+export type NotaDeImprensaCollection = {
+  __typename?: 'NotaDeImprensaCollection';
+  items: Array<Maybe<NotaDeImprensa>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type NotaDeImprensaFilter = {
+  AND?: InputMaybe<Array<InputMaybe<NotaDeImprensaFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<NotaDeImprensaFilter>>>;
+  body_contains?: InputMaybe<Scalars['String']['input']>;
+  body_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  body_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  publishDate?: InputMaybe<Scalars['DateTime']['input']>;
+  publishDate_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  publishDate_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  publishDate_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  publishDate_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishDate_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  publishDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  publishDate_not?: InputMaybe<Scalars['DateTime']['input']>;
+  publishDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type NotaDeImprensaLinkingCollections = {
+  __typename?: 'NotaDeImprensaLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type NotaDeImprensaLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum NotaDeImprensaOrder {
+  PublishDateAsc = 'publishDate_ASC',
+  PublishDateDesc = 'publishDate_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 /** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost) */
 export type PageBlogPost = Entry & _Node & {
   __typename?: 'PageBlogPost';
@@ -1394,6 +1556,8 @@ export type Query = {
   componentSeo?: Maybe<ComponentSeo>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  notaDeImprensa?: Maybe<NotaDeImprensa>;
+  notaDeImprensaCollection?: Maybe<NotaDeImprensaCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageLanding?: Maybe<PageLanding>;
@@ -1509,6 +1673,23 @@ export type QueryEntryCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryNotaDeImprensaArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryNotaDeImprensaCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<NotaDeImprensaOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<NotaDeImprensaFilter>;
 };
 
 
@@ -1957,6 +2138,23 @@ export type CategoryPageQuery = { __typename?: 'Query', categoryCollection?: { _
 
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
+export type GetPressReleaseBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+  locale: Scalars['String']['input'];
+}>;
+
+
+export type GetPressReleaseBySlugQuery = { __typename?: 'Query', notaDeImprensaCollection?: { __typename?: 'NotaDeImprensaCollection', items: Array<{ __typename?: 'NotaDeImprensa', title?: string | null, slug?: string | null, publishDate?: any | null, body?: { __typename?: 'NotaDeImprensaBody', json: any, links: { __typename: 'NotaDeImprensaBodyLinks' } } | null } | null> } | null };
+
+export type GetPressReleasesListQueryVariables = Exact<{
+  locale: Scalars['String']['input'];
+  limit: Scalars['Int']['input'];
+  order: Array<InputMaybe<NotaDeImprensaOrder>> | InputMaybe<NotaDeImprensaOrder>;
+}>;
+
+
+export type GetPressReleasesListQuery = { __typename?: 'Query', notaDeImprensaCollection?: { __typename?: 'NotaDeImprensaCollection', items: Array<{ __typename?: 'NotaDeImprensa', title?: string | null, slug?: string | null, publishDate?: any | null } | null> } | null };
+
 export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, author?: (
     { __typename?: 'ComponentAuthor' }
     & AuthorFieldsFragment
@@ -1977,7 +2175,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, category?: { __typename?: 'Category', name?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } } | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'NotaDeImprensa' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -2063,7 +2261,7 @@ export type SitemapPagesQuery = (
 export type StaticPageFieldsFragment = { __typename: 'StaticPage', tituloInterno?: string | null, tituloExterno?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, richText?: { __typename?: 'StaticPageRichText', json: any, links: { __typename?: 'StaticPageRichTextLinks', entries: { __typename?: 'StaticPageRichTextEntries', block: Array<{ __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | null> } } } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'NotaDeImprensa' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | null> } } } | null };
 
 export type StaticPageQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -2293,6 +2491,34 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
+export const GetPressReleaseBySlugDocument = gql`
+    query GetPressReleaseBySlug($slug: String!, $locale: String!) {
+  notaDeImprensaCollection(where: {slug: $slug}, locale: $locale, limit: 1) {
+    items {
+      title
+      slug
+      publishDate
+      body {
+        json
+        links {
+          __typename
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetPressReleasesListDocument = gql`
+    query GetPressReleasesList($locale: String!, $limit: Int!, $order: [NotaDeImprensaOrder]!) {
+  notaDeImprensaCollection(locale: $locale, limit: $limit, order: $order) {
+    items {
+      title
+      slug
+      publishDate
+    }
+  }
+}
+    `;
 export const PageBlogPostDocument = gql`
     query pageBlogPost($slug: String!, $locale: String, $preview: Boolean) {
   pageBlogPostCollection(
@@ -2389,6 +2615,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     CategoryPage(variables: CategoryPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CategoryPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CategoryPageQuery>({ document: CategoryPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'CategoryPage', 'query', variables);
+    },
+    GetPressReleaseBySlug(variables: GetPressReleaseBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPressReleaseBySlugQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPressReleaseBySlugQuery>({ document: GetPressReleaseBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPressReleaseBySlug', 'query', variables);
+    },
+    GetPressReleasesList(variables: GetPressReleasesListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetPressReleasesListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetPressReleasesListQuery>({ document: GetPressReleasesListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'GetPressReleasesList', 'query', variables);
     },
     pageBlogPost(variables: PageBlogPostQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PageBlogPostQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostQuery>({ document: PageBlogPostDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pageBlogPost', 'query', variables);

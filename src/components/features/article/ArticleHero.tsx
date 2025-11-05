@@ -80,7 +80,7 @@ export const ArticleHero = ({
         )}
         <div
           className={twMerge(
-            'font-bold mt-2 flex text-gray600',
+            'mt-2 flex text-gray600',
             isReversedLayout ? 'lg:hidden' : '',
           )}
           {...inspectorProps({ fieldId: 'publishedDate' })}>

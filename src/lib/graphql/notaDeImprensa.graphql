@@ -1,0 +1,15 @@
+query GetPressReleaseBySlug($slug: String!, $locale: String!) {
+  notaDeImprensaCollection(where: { slug: $slug }, locale: $locale, limit: 1) {
+    items {
+      title
+      slug
+      publishDate
+      body {
+        json
+        links {
+          __typename
+        }
+      }
+    }
+  }
+}

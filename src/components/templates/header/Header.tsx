@@ -1,9 +1,9 @@
 'use client';
 
+import BlogLogo from '@icons/blog-logo.svg';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
-import BlogLogo from '@icons/blog-logo.svg';
 import { LanguageSelector } from '@src/components/features/language-selector';
 import { Container } from '@src/components/shared/container';
 
@@ -17,8 +17,11 @@ export const Header = () => {
           <Link href="/" title={t('common.homepage')}>
             <BlogLogo />
           </Link>
-          <Link href="/bose-qc-ultra">Bose QC Ultra</Link>
-          <LanguageSelector />
+          <div className="flex space-x-4">
+            <Link href="/bose-qc-ultra">Bose QC Ultra</Link>
+            <Link href="/notas-de-imprensa">Notas de Imprensa</Link>
+            <LanguageSelector />
+          </div>
         </Container>
       </nav>
     </header>
