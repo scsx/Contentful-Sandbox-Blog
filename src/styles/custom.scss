@@ -1,0 +1,50 @@
+/* --- Variáveis --- */
+$color-text: #fff;
+$color-hover-transition: 150ms ease-in-out;
+
+/* --- Definição da Tag Base --- */
+.category-tag-base {
+  display: inline-block;
+  width: auto;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  color: $color-text;
+  transition: background-color $color-hover-transition;
+}
+
+/* --- Classes Específicas por Slug --- */
+.category-tag-tech {
+  @extend .category-tag-base;
+  background-color: #444ddd;
+  &:hover {
+    background-color: #252da7;
+  }
+}
+
+.category-tag-news {
+  @extend .category-tag-base;
+  background-color: #3bb43b;
+  &:hover {
+    background-color: #248324;
+  }
+}
+
+.category-tag-future {
+  @extend .category-tag-base;
+  background-color: #0c8bda;
+  &:hover {
+    background-color: #00588e;
+  }
+}
+
+/* --- Cor Padrão (Fallback) --- */
+.category-tag-default {
+  @extend .category-tag-base;
+  background-color: #dddddd;
+  &:hover {
+    background-color: #cccccc;
+  }
+}
