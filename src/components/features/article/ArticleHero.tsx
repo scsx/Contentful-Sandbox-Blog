@@ -18,18 +18,18 @@ interface ArticleHeroProps {
   isFeatured?: boolean;
   isReversedLayout?: boolean;
   locale?: string;
+  isArticlePage?: boolean;
 }
 
 export const ArticleHero = ({
   article,
   isFeatured,
   isReversedLayout = false,
+  isArticlePage = false,
 }: ArticleHeroProps) => {
   const { t } = useTranslation();
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = useContentfulLiveUpdates(article);
-
-  console.log(article.category?.name);
 
   return (
     <div
@@ -79,13 +79,17 @@ export const ArticleHero = ({
           <FormatDate date={publishedDate} />
         </div>
         {article.category?.name && (
-          <p className='mt-4'>
+          <p className="mt-4">
             Submitted under:{' '}
-            <Link
-              href={`/categories/${article.category.slug}`}
-              className="font-bold leading-none text-blue500 hover:underline">
-              {article.category.name}
-            </Link>
+            {isArticlePage ? (
+              <Link
+                href={`/categories/${article.category.slug}`}
+                className="font-bold leading-none text-blue500 hover:underline">
+                {article.category.name}
+              </Link>
+            ) : (
+              <span className="font-bold leading-none">{article.category.name}</span>
+            )}
           </p>
         )}
       </div>

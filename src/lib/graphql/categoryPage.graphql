@@ -1,0 +1,28 @@
+query CategoryPage($categorySlug: String!, $locale: String!, $preview: Boolean) {
+  # 1. Buscar a categoria pelo slug (para obter o nome e ID)
+  categoryCollection(where: { slug: $categorySlug }, locale: $locale, preview: $preview, limit: 1) {
+    items {
+      name
+      sys {
+        id
+      }
+    }
+  }
+
+  # 2. Buscar a lista de posts filtrada pela categoria
+  pageBlogPostCollection(
+    limit: 100 # Limite de artigos por página (pode ser ajustado)
+    locale: $locale
+    preview: $preview
+    order: [publishedDate_DESC] # Ordenar por mais recente
+    where: {
+      # 🎯 O FILTRO PRINCIPAL: Busca posts onde o campo 'category' aponta para o slug fornecido
+      category: { slug: $categorySlug }
+    }
+  ) {
+    items {
+      # Usar o fragmento completo que já sabemos que funciona
+      ...PageBlogPostFields
+    }
+  }
+}

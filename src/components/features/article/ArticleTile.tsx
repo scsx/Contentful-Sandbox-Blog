@@ -21,8 +21,6 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
   const { featuredImage, publishedDate, slug, title } = useContentfulLiveUpdates(article);
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
-  console.log(article.category);
-
   return (
     <Link className="flex flex-col" href={`/${slug}`}>
       <div

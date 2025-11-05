@@ -1943,6 +1943,18 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
     & ImageFieldsFragment
   ) | null };
 
+export type CategoryPageQueryVariables = Exact<{
+  categorySlug: Scalars['String']['input'];
+  locale: Scalars['String']['input'];
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type CategoryPageQuery = { __typename?: 'Query', categoryCollection?: { __typename?: 'CategoryCollection', items: Array<{ __typename?: 'Category', name?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null, pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<(
+      { __typename?: 'PageBlogPost' }
+      & PageBlogPostFieldsFragment
+    ) | null> } | null };
+
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
 export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, author?: (
@@ -2248,6 +2260,39 @@ export const StaticPageFieldsFragmentDoc = gql`
   }
 }
     `;
+export const CategoryPageDocument = gql`
+    query CategoryPage($categorySlug: String!, $locale: String!, $preview: Boolean) {
+  categoryCollection(
+    where: {slug: $categorySlug}
+    locale: $locale
+    preview: $preview
+    limit: 1
+  ) {
+    items {
+      name
+      sys {
+        id
+      }
+    }
+  }
+  pageBlogPostCollection(
+    limit: 100
+    locale: $locale
+    preview: $preview
+    order: [publishedDate_DESC]
+    where: {category: {slug: $categorySlug}}
+  ) {
+    items {
+      ...PageBlogPostFields
+    }
+  }
+}
+    ${PageBlogPostFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}
+${AuthorFieldsFragmentDoc}
+${RichImageFieldsFragmentDoc}
+${ReferencePageBlogPostFieldsFragmentDoc}`;
 export const PageBlogPostDocument = gql`
     query pageBlogPost($slug: String!, $locale: String, $preview: Boolean) {
   pageBlogPostCollection(
@@ -2342,6 +2387,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    CategoryPage(variables: CategoryPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CategoryPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CategoryPageQuery>({ document: CategoryPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'CategoryPage', 'query', variables);
+    },
     pageBlogPost(variables: PageBlogPostQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PageBlogPostQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostQuery>({ document: PageBlogPostDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pageBlogPost', 'query', variables);
     },
