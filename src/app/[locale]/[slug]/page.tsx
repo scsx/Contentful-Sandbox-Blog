@@ -3,6 +3,7 @@ import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { ArticleContent, ArticleHero, ArticleTileGrid } from '@src/components/features/article';
+import { Breadcrumbs } from '@src/components/features/breadcrumbs/Breadcrumbs';
 import { Container } from '@src/components/shared/container';
 import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
@@ -85,10 +86,30 @@ export default async function Page({ params: { locale, slug } }: BlogPageProps) 
     notFound();
   }
 
+  // Breadcrumbs data
+  const categoryName = blogPost.category?.name;
+  const categorySlug = blogPost.category?.slug;
+  const articleTitle = blogPost.title;
+
   return (
     <>
       <Container>
-        <ArticleHero article={blogPost} isFeatured={isFeatured} isReversedLayout={true} isArticlePage />
+        {categoryName && categorySlug && (
+          <Breadcrumbs
+            items={[
+              { label: t('home') || 'Home', href: `/${locale}` },
+              { label: categoryName, href: `/${locale}/categories/${categorySlug}` },
+              { label: articleTitle || slug, href: `/${locale}/${slug}` },
+            ]}
+            className="mt-8 mb-4"
+          />
+        )}
+        <ArticleHero
+          article={blogPost}
+          isFeatured={isFeatured}
+          isReversedLayout={true}
+          isArticlePage
+        />
       </Container>
       <Container className="mt-8 max-w-4xl">
         <ArticleContent article={blogPost} />

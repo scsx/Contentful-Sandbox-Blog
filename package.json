@@ -54,6 +54,7 @@
     "@graphql-codegen/typescript-graphql-request": "6.3.0",
     "@svgr/webpack": "8.1.0",
     "@tailwindcss/typography": "0.5.19",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
     "@types/negotiator": "0.6.4",
     "@types/node": "22.18.13",
     "@types/react": "18.3.26",

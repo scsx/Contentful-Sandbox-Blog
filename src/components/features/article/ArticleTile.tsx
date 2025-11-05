@@ -1,11 +1,12 @@
 'use client';
 
+import { HTMLProps } from 'react';
+
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from '@contentful/live-preview/react';
 import Link from 'next/link';
-import { HTMLProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
@@ -47,7 +48,11 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
             <div className="flex">
               <ArticleAuthor article={article} />
               {article.category && (
-                <span className="ml-4 mt-2 text-xs font-bold leading-none text-blue500">{article.category.name}</span>
+                <span
+                  className="ml-4 mt-2 text-xs font-bold leading-none text-gray700"
+                  {...inspectorProps({ fieldId: 'category' })}>
+                  {article.category.name}
+                </span>
               )}
             </div>
             <div

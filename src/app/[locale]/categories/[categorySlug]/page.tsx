@@ -3,16 +3,17 @@ import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { ArticleTileGrid } from '@src/components/features/article';
+import { Breadcrumbs } from '@src/components/features/breadcrumbs/Breadcrumbs';
 import { Container } from '@src/components/shared/container';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
 import initTranslations from '@src/i18n';
-import { client, previewClient } from '@src/lib/client';
 import { CategoryPageQuery } from '@src/lib/__generated/sdk';
+import { client, previewClient } from '@src/lib/client';
 
 interface CategoryPageProps {
   params: {
     locale: string;
-    categorySlug: string; // O slug que vem do URL (ex: 'it')
+    categorySlug: string;
   };
 }
 
@@ -45,7 +46,6 @@ export default async function CategoryPage({
 
   // Busca os dados filtrados
   const data: CategoryPageQuery = await gqlClient.CategoryPage({ categorySlug, locale, preview });
-
   const categoryName = data.categoryCollection?.items[0]?.name;
   const posts = data.pageBlogPostCollection?.items;
 
@@ -58,6 +58,14 @@ export default async function CategoryPage({
   return (
     <TranslationsProvider locale={locale} resources={resources}>
       <Container className="py-10">
+        <Breadcrumbs
+          items={[
+            { label: t('home') || 'Home', href: `/${locale}` },
+            { label: categoryName || categorySlug, href: `/${locale}/categories/${categorySlug}` },
+          ]}
+          className="mb-8 mt-4"
+        />
+
         <h1 className="mb-8 text-3xl font-bold">
           {t('category.category') || 'Category'}: {categoryName || categorySlug}
         </h1>
