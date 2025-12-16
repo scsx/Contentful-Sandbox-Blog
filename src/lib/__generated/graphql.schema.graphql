@@ -1,32 +1,20 @@
 directive @contentSourceMaps on QUERY
 
-directive @contentfulSchemaMetadata(contentTypePublishedCounters: JSON) on SCHEMA
-
-directive @delegatedResourceLink(contentTypeId: String, field: JSON) on FIELD_DEFINITION | OBJECT
-
-directive @enumMapper(value: JSON) on ENUM_VALUE
-
-directive @featureFlag(featureName: String) on FIELD
-
-directive @fieldResolver(data: JSON, kind: String) on FIELD_DEFINITION
-
 directive @timeline(where: TimelineFilterInput!) on QUERY
-
-directive @typeIdentifier(contentTypeId: String) on OBJECT
 
 """Represents a binary file in a space. An asset can be any file type."""
 type Asset {
-  contentType(locale: String): String
+  contentType(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  description(locale: String): String
-  fileName(locale: String): String
-  height(locale: String): Int
+  description(locale: String, useFallbackLocale: Boolean): String
+  fileName(locale: String, useFallbackLocale: Boolean): String
+  height(locale: String, useFallbackLocale: Boolean): Int
   linkedFrom(allowedLocales: [String]): AssetLinkingCollections
-  size(locale: String): Int
+  size(locale: String, useFallbackLocale: Boolean): Int
   sys: Sys!
-  title(locale: String): String
-  url(locale: String, transform: ImageTransformOptions): String
-  width(locale: String): Int
+  title(locale: String, useFallbackLocale: Boolean): String
+  url(locale: String, transform: ImageTransformOptions, useFallbackLocale: Boolean): String
+  width(locale: String, useFallbackLocale: Boolean): Int
 }
 
 type AssetCollection {
@@ -106,11 +94,11 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
-  componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentAuthorCollection
-  componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRichImageCollection
-  componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSeoCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ComponentAuthorCollection
+  componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ComponentRichImageCollection
+  componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ComponentSeoCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageBlogPostCollection
 }
 
 enum AssetOrder {
@@ -137,14 +125,14 @@ enum AssetOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category)
+Usado para categorizar entradas de blog. [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category)
 """
 type Category implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): CategoryLinkingCollections
-  name(locale: String): String
-  slug(locale: String): String
+  name(locale: String, useFallbackLocale: Boolean): String
+  slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
 }
 
@@ -177,8 +165,8 @@ input CategoryFilter {
 }
 
 type CategoryLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [CategoryLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageBlogPostCollection(limit: Int = 100, locale: String, order: [CategoryLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageBlogPostCollection
 }
 
 enum CategoryLinkingCollectionsPageBlogPostCollectionOrder {
@@ -216,15 +204,15 @@ enum CategoryOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentAuthor)
+To have author-related properties [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentAuthor)
 """
 type ComponentAuthor implements Entry & _Node {
   _id: ID!
-  avatar(locale: String, preview: Boolean): Asset
+  avatar(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
   contentfulMetadata: ContentfulMetadata!
-  internalName(locale: String): String
+  internalName(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): ComponentAuthorLinkingCollections
-  name(locale: String): String
+  name(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
 }
 
@@ -258,8 +246,8 @@ input ComponentAuthorFilter {
 }
 
 type ComponentAuthorLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentAuthorLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentAuthorLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageBlogPostCollection
 }
 
 enum ComponentAuthorLinkingCollectionsPageBlogPostCollectionOrder {
@@ -297,15 +285,15 @@ enum ComponentAuthorOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentRichImage)
+To describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentRichImage)
 """
 type ComponentRichImage implements Entry & _Node {
   _id: ID!
-  caption(locale: String): String
+  caption(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  fullWidth(locale: String): Boolean
-  image(locale: String, preview: Boolean): Asset
-  internalName(locale: String): String
+  fullWidth(locale: String, useFallbackLocale: Boolean): Boolean
+  image(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  internalName(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): ComponentRichImageLinkingCollections
   sys: Sys!
 }
@@ -343,7 +331,7 @@ input ComponentRichImageFilter {
 }
 
 type ComponentRichImageLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum ComponentRichImageOrder {
@@ -364,19 +352,19 @@ enum ComponentRichImageOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentSeo)
+To have SEO-related properties to the pages we render [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentSeo)
 """
 type ComponentSeo implements Entry & _Node {
   _id: ID!
-  canonicalUrl(locale: String): String
+  canonicalUrl(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  internalName(locale: String): String
+  internalName(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): ComponentSeoLinkingCollections
-  nofollow(locale: String): Boolean
-  noindex(locale: String): Boolean
-  pageDescription(locale: String): String
-  pageTitle(locale: String): String
-  shareImagesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  nofollow(locale: String, useFallbackLocale: Boolean): Boolean
+  noindex(locale: String, useFallbackLocale: Boolean): Boolean
+  pageDescription(locale: String, useFallbackLocale: Boolean): String
+  pageTitle(locale: String, useFallbackLocale: Boolean): String
+  shareImagesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): AssetCollection
   sys: Sys!
 }
 
@@ -430,9 +418,9 @@ input ComponentSeoFilter {
 }
 
 type ComponentSeoLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
-  pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageBlogPostCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageLandingCollection
 }
 
 enum ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder {
@@ -709,17 +697,17 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa)
+https://www.vodafone.pt/press-releases.html [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa)
 """
 type NotaDeImprensa implements Entry & _Node {
   _id: ID!
-  body(locale: String): NotaDeImprensaBody
+  body(locale: String, useFallbackLocale: Boolean): NotaDeImprensaBody
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): NotaDeImprensaLinkingCollections
-  publishDate(locale: String): DateTime
-  slug(locale: String): String
+  publishDate(locale: String, useFallbackLocale: Boolean): DateTime
+  slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
-  title(locale: String): String
+  title(locale: String, useFallbackLocale: Boolean): String
 }
 
 type NotaDeImprensaBody {
@@ -803,7 +791,7 @@ input NotaDeImprensaFilter {
 }
 
 type NotaDeImprensaLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum NotaDeImprensaOrder {
@@ -824,24 +812,24 @@ enum NotaDeImprensaOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost)
+To create individual blog posts [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry & _Node {
   _id: ID!
-  author(locale: String, preview: Boolean, where: ComponentAuthorFilter): ComponentAuthor
-  category(locale: String, preview: Boolean, where: CategoryFilter): Category
-  content(locale: String): PageBlogPostContent
+  author(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: ComponentAuthorFilter): ComponentAuthor
+  category(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: CategoryFilter): Category
+  content(locale: String, useFallbackLocale: Boolean): PageBlogPostContent
   contentfulMetadata: ContentfulMetadata!
-  featuredImage(locale: String, preview: Boolean): Asset
-  internalName(locale: String): String
+  featuredImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  internalName(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): PageBlogPostLinkingCollections
-  publishedDate(locale: String): DateTime
-  relatedBlogPostsCollection(limit: Int = 100, locale: String, order: [PageBlogPostRelatedBlogPostsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostRelatedBlogPostsCollection
-  seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
-  shortDescription(locale: String): String
-  slug(locale: String): String
+  publishedDate(locale: String, useFallbackLocale: Boolean): DateTime
+  relatedBlogPostsCollection(limit: Int = 100, locale: String, order: [PageBlogPostRelatedBlogPostsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageBlogPostFilter): PageBlogPostRelatedBlogPostsCollection
+  seoFields(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: ComponentSeoFilter): ComponentSeo
+  shortDescription(locale: String, useFallbackLocale: Boolean): String
+  slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
-  title(locale: String): String
+  title(locale: String, useFallbackLocale: Boolean): String
 }
 
 type PageBlogPostCollection {
@@ -948,9 +936,9 @@ input PageBlogPostFilter {
 }
 
 type PageBlogPostLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
-  pageLandingCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageBlogPostCollection
+  pageLandingCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageLandingCollection
 }
 
 enum PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder {
@@ -1031,15 +1019,15 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageLanding)
+To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageLanding)
 """
 type PageLanding implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
-  featuredBlogPost(locale: String, preview: Boolean, where: PageBlogPostFilter): PageBlogPost
-  internalName(locale: String): String
+  featuredBlogPost(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: PageBlogPostFilter): PageBlogPost
+  internalName(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): PageLandingLinkingCollections
-  seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
+  seoFields(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: ComponentSeoFilter): ComponentSeo
   sys: Sys!
 }
 
@@ -1069,7 +1057,7 @@ input PageLandingFilter {
 }
 
 type PageLandingLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum PageLandingOrder {
@@ -1091,27 +1079,27 @@ The 'Quality' type represents quality as whole numeric values between `1` and `1
 scalar Quality
 
 type Query {
-  _node(id: ID!, locale: String, preview: Boolean): _Node
-  _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
-  asset(id: String!, locale: String, preview: Boolean): Asset
-  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
-  category(id: String!, locale: String, preview: Boolean): Category
-  categoryCollection(limit: Int = 100, locale: String, order: [CategoryOrder], preview: Boolean, skip: Int = 0, where: CategoryFilter): CategoryCollection
-  componentAuthor(id: String!, locale: String, preview: Boolean): ComponentAuthor
-  componentAuthorCollection(limit: Int = 100, locale: String, order: [ComponentAuthorOrder], preview: Boolean, skip: Int = 0, where: ComponentAuthorFilter): ComponentAuthorCollection
-  componentRichImage(id: String!, locale: String, preview: Boolean): ComponentRichImage
-  componentRichImageCollection(limit: Int = 100, locale: String, order: [ComponentRichImageOrder], preview: Boolean, skip: Int = 0, where: ComponentRichImageFilter): ComponentRichImageCollection
-  componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
-  componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, where: ComponentSeoFilter): ComponentSeoCollection
-  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
-  notaDeImprensa(id: String!, locale: String, preview: Boolean): NotaDeImprensa
-  notaDeImprensaCollection(limit: Int = 100, locale: String, order: [NotaDeImprensaOrder], preview: Boolean, skip: Int = 0, where: NotaDeImprensaFilter): NotaDeImprensaCollection
-  pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
-  pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
-  pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
-  pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
-  staticPage(id: String!, locale: String, preview: Boolean): StaticPage
-  staticPageCollection(limit: Int = 100, locale: String, order: [StaticPageOrder], preview: Boolean, skip: Int = 0, where: StaticPageFilter): StaticPageCollection
+  _node(id: ID!, locale: String, preview: Boolean, useFallbackLocale: Boolean): _Node
+  _nodes(ids: [ID!]!, locale: String, preview: Boolean, useFallbackLocale: Boolean): [_Node]!
+  asset(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: AssetFilter): AssetCollection
+  category(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Category
+  categoryCollection(limit: Int = 100, locale: String, order: [CategoryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: CategoryFilter): CategoryCollection
+  componentAuthor(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ComponentAuthor
+  componentAuthorCollection(limit: Int = 100, locale: String, order: [ComponentAuthorOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ComponentAuthorFilter): ComponentAuthorCollection
+  componentRichImage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ComponentRichImage
+  componentRichImageCollection(limit: Int = 100, locale: String, order: [ComponentRichImageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ComponentRichImageFilter): ComponentRichImageCollection
+  componentSeo(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ComponentSeo
+  componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ComponentSeoFilter): ComponentSeoCollection
+  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EntryFilter): EntryCollection
+  notaDeImprensa(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): NotaDeImprensa
+  notaDeImprensaCollection(limit: Int = 100, locale: String, order: [NotaDeImprensaOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: NotaDeImprensaFilter): NotaDeImprensaCollection
+  pageBlogPost(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): PageBlogPost
+  pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageBlogPostFilter): PageBlogPostCollection
+  pageLanding(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): PageLanding
+  pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageLandingFilter): PageLandingCollection
+  staticPage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): StaticPage
+  staticPageCollection(limit: Int = 100, locale: String, order: [StaticPageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: StaticPageFilter): StaticPageCollection
 }
 
 interface ResourceLink {
@@ -1124,17 +1112,17 @@ type ResourceSys {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/staticPage)
+Common text page [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/staticPage)
 """
 type StaticPage implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): StaticPageLinkingCollections
-  richText(locale: String): StaticPageRichText
-  slug(locale: String): String
+  richText(locale: String, useFallbackLocale: Boolean): StaticPageRichText
+  slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
-  tituloExterno(locale: String): String
-  tituloInterno(locale: String): String
+  tituloExterno(locale: String, useFallbackLocale: Boolean): String
+  tituloInterno(locale: String, useFallbackLocale: Boolean): String
 }
 
 type StaticPageCollection {
@@ -1176,7 +1164,7 @@ input StaticPageFilter {
 }
 
 type StaticPageLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum StaticPageOrder {

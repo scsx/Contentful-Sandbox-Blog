@@ -1,13 +1,13 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
-import type { Metadata } from 'next';
+import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { Container } from '@src/components/shared/container';
 import TranslationsProvider from '@src/components/shared/i18n/TranslationProvider';
 import initTranslations from '@src/i18n';
 import { locales } from '@src/i18n/config';
-import { client } from '@src/lib/client';
+import { client, previewClient } from '@src/lib/client';
+
+export const dynamicParams = true;
 
 // --- CONFIGURAÇÃO DO RICH TEXT RENDERER ---
 const i18nNamespaces = ['press', 'common'];
@@ -23,8 +23,7 @@ interface PressReleasePageProps {
 // --- 1. FUNÇÃO generateStaticParams (Busca todos os slugs para pré-renderização) ---
 export async function generateStaticParams() {
   const gqlClient = client;
-
-  const paths: { slug: string; locale: string }[] = [];
+  const paths: { slug: string; locale?: string }[] = [];
 
   for (const locale of locales) {
     const result = await gqlClient.GetPressReleasesList({
@@ -35,14 +34,11 @@ export async function generateStaticParams() {
 
     const slugs = result.notaDeImprensaCollection?.items.map(item => item?.slug).filter(Boolean);
 
-    if (slugs) {
-      slugs.forEach(slug => {
-        paths.push({
-          slug: slug as string,
-          locale,
-        });
-      });
-    }
+    if (!slugs) continue;
+
+    slugs.forEach(slug => {
+      paths.push(locale === 'en-US' ? { slug: slug as string } : { slug: slug as string, locale });
+    });
   }
 
   return paths;
@@ -51,12 +47,19 @@ export async function generateStaticParams() {
 // --- 2. COMPONENTE DA PÁGINA DE DETALHE ---
 export default async function PressReleaseDetailPage({ params }: PressReleasePageProps) {
   const { slug, locale } = params;
-  const { resources } = await initTranslations({ locale, namespaces: i18nNamespaces });
-  const gqlClient = client;
+  const effectiveLocale = locale ?? 'en-US';
+  const { isEnabled: preview } = draftMode();
+  const gqlClient = preview ? previewClient : client;
+
+  const { resources } = await initTranslations({
+    locale: effectiveLocale,
+    namespaces: i18nNamespaces,
+  });
 
   const result = await gqlClient.GetPressReleaseBySlug({
     slug,
-    locale,
+    locale: effectiveLocale,
+    preview,
   });
 
   const release = result.notaDeImprensaCollection?.items[0];
@@ -70,11 +73,11 @@ export default async function PressReleaseDetailPage({ params }: PressReleasePag
   const { title, publishDate } = release;
 
   return (
-    <TranslationsProvider locale={locale} resources={resources}>
+    <TranslationsProvider locale={effectiveLocale} resources={resources}>
       <Container className="pt-16 pb-32 max-w-4xl mx-auto">
         <header className="mb-10">
           <p className="text-sm text-gray-500 mb-2">
-            {new Date(publishDate).toLocaleDateString(locale, {
+            {new Date(publishDate).toLocaleDateString(effectiveLocale, {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
