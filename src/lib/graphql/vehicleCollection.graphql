@@ -1,0 +1,20 @@
+query vehicleCollection(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [VehicleOrder]
+  $where: VehicleFilter
+) {
+  vehicleCollection(
+    locale: $locale
+    preview: $preview
+    limit: $limit
+    order: $order
+    where: $where
+  ) {
+    items {
+      name
+      details
+    }
+  }
+}

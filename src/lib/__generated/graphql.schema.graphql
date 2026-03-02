@@ -1,6 +1,18 @@
 directive @contentSourceMaps on QUERY
 
+directive @contentfulSchemaMetadata(contentTypePublishedCounters: JSON) on SCHEMA
+
+directive @delegatedResourceLink(contentTypeId: String, field: JSON) on FIELD_DEFINITION | OBJECT
+
+directive @enumMapper(value: JSON) on ENUM_VALUE
+
+directive @featureFlag(featureName: String) on FIELD
+
+directive @fieldResolver(data: JSON, kind: String) on FIELD_DEFINITION
+
 directive @timeline(where: TimelineFilterInput!) on QUERY
+
+directive @typeIdentifier(contentTypeId: String) on OBJECT
 
 """Represents a binary file in a space. An asset can be any file type."""
 type Asset {
@@ -125,7 +137,7 @@ enum AssetOrder {
 }
 
 """
-Usado para categorizar entradas de blog. [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/category)
 """
 type Category implements Entry & _Node {
   _id: ID!
@@ -204,7 +216,7 @@ enum CategoryOrder {
 }
 
 """
-To have author-related properties [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentAuthor)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentAuthor)
 """
 type ComponentAuthor implements Entry & _Node {
   _id: ID!
@@ -285,7 +297,7 @@ enum ComponentAuthorOrder {
 }
 
 """
-To describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentRichImage)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentRichImage)
 """
 type ComponentRichImage implements Entry & _Node {
   _id: ID!
@@ -352,7 +364,7 @@ enum ComponentRichImageOrder {
 }
 
 """
-To have SEO-related properties to the pages we render [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentSeo)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/componentSeo)
 """
 type ComponentSeo implements Entry & _Node {
   _id: ID!
@@ -514,6 +526,57 @@ Represents a tag entity for finding and organizing content easily.
 type ContentfulTag {
   id: String
   name: String
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/countries)
+"""
+type Countries implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  countries(locale: String, useFallbackLocale: Boolean): String
+  countryList(locale: String, useFallbackLocale: Boolean): JSON
+  linkedFrom(allowedLocales: [String]): CountriesLinkingCollections
+  sys: Sys!
+}
+
+type CountriesCollection {
+  items: [Countries]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input CountriesFilter {
+  AND: [CountriesFilter]
+  OR: [CountriesFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  countries: String
+  countries_contains: String
+  countries_exists: Boolean
+  countries_in: [String]
+  countries_not: String
+  countries_not_contains: String
+  countries_not_in: [String]
+  countryList_exists: Boolean
+  sys: SysFilter
+}
+
+type CountriesLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum CountriesOrder {
+  countries_ASC
+  countries_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 """
@@ -697,7 +760,7 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
-https://www.vodafone.pt/press-releases.html [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/notaDeImprensa)
 """
 type NotaDeImprensa implements Entry & _Node {
   _id: ID!
@@ -812,7 +875,7 @@ enum NotaDeImprensaOrder {
 }
 
 """
-To create individual blog posts [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry & _Node {
   _id: ID!
@@ -1019,7 +1082,7 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 }
 
 """
-To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageLanding)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageLanding)
 """
 type PageLanding implements Entry & _Node {
   _id: ID!
@@ -1091,6 +1154,8 @@ type Query {
   componentRichImageCollection(limit: Int = 100, locale: String, order: [ComponentRichImageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ComponentRichImageFilter): ComponentRichImageCollection
   componentSeo(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ComponentSeo
   componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ComponentSeoFilter): ComponentSeoCollection
+  countries(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Countries
+  countriesCollection(limit: Int = 100, locale: String, order: [CountriesOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: CountriesFilter): CountriesCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EntryFilter): EntryCollection
   notaDeImprensa(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): NotaDeImprensa
   notaDeImprensaCollection(limit: Int = 100, locale: String, order: [NotaDeImprensaOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: NotaDeImprensaFilter): NotaDeImprensaCollection
@@ -1100,6 +1165,8 @@ type Query {
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageLandingFilter): PageLandingCollection
   staticPage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): StaticPage
   staticPageCollection(limit: Int = 100, locale: String, order: [StaticPageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: StaticPageFilter): StaticPageCollection
+  vehicle(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Vehicle
+  vehicleCollection(limit: Int = 100, locale: String, order: [VehicleOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VehicleFilter): VehicleCollection
 }
 
 interface ResourceLink {
@@ -1112,7 +1179,7 @@ type ResourceSys {
 }
 
 """
-Common text page [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/staticPage)
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/staticPage)
 """
 type StaticPage implements Entry & _Node {
   _id: ID!
@@ -1287,6 +1354,57 @@ input TimelineFilterInput {
 
   """Preview content starting from a given timestamp"""
   timestamp_lte: DateTime
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/vehicle)
+"""
+type Vehicle implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  details(locale: String, useFallbackLocale: Boolean): JSON
+  linkedFrom(allowedLocales: [String]): VehicleLinkingCollections
+  name(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+}
+
+type VehicleCollection {
+  items: [Vehicle]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input VehicleFilter {
+  AND: [VehicleFilter]
+  OR: [VehicleFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  details_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  sys: SysFilter
+}
+
+type VehicleLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum VehicleOrder {
+  name_ASC
+  name_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 interface _Node {
