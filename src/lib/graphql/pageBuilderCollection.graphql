@@ -1,0 +1,19 @@
+query pageBuilderCollection(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [PageBuilderOrder]
+  $where: PageBuilderFilter
+) {
+  pageBuilderCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      slug
+    }
+  }
+}

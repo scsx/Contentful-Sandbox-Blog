@@ -106,6 +106,8 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  blockHeroCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockHeroCollection
+  blockWrapperCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockWrapperCollection
   componentAuthorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ComponentAuthorCollection
   componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ComponentRichImageCollection
   componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ComponentSeoCollection
@@ -132,6 +134,531 @@ enum AssetOrder {
   sys_publishedVersion_DESC
   url_ASC
   url_DESC
+  width_ASC
+  width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockFaQs)
+"""
+type BlockFaQs implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  itemsCollection(limit: Int = 100, locale: String, order: [BlockFaQsItemsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockTextColumnItemFilter): BlockFaQsItemsCollection
+  linkedFrom(allowedLocales: [String]): BlockFaQsLinkingCollections
+  sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
+}
+
+type BlockFaQsCollection {
+  items: [BlockFaQs]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input BlockFaQsFilter {
+  AND: [BlockFaQsFilter]
+  OR: [BlockFaQsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  items: cfBlockTextColumnItemNestedFilter
+  itemsCollection_exists: Boolean
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type BlockFaQsItemsCollection {
+  items: [BlockTextColumnItem]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum BlockFaQsItemsCollectionOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type BlockFaQsLinkingCollections {
+  blockWrapperCollection(limit: Int = 100, locale: String, order: [BlockFaQsLinkingCollectionsBlockWrapperCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockWrapperCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum BlockFaQsLinkingCollectionsBlockWrapperCollectionOrder {
+  backgroundColor_ASC
+  backgroundColor_DESC
+  name_ASC
+  name_DESC
+  paddingBottom_ASC
+  paddingBottom_DESC
+  paddingTop_ASC
+  paddingTop_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  width_ASC
+  width_DESC
+}
+
+enum BlockFaQsOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero)
+"""
+type BlockHero implements Entry & _Node {
+  _id: ID!
+  backgroundImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  contentfulMetadata: ContentfulMetadata!
+  ctaText(locale: String, useFallbackLocale: Boolean): String
+  ctaUrl(locale: String, useFallbackLocale: Boolean): String
+  internalTitle(locale: String, useFallbackLocale: Boolean): String
+  linkedFrom(allowedLocales: [String]): BlockHeroLinkingCollections
+  subtitle(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
+}
+
+type BlockHeroCollection {
+  items: [BlockHero]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input BlockHeroFilter {
+  AND: [BlockHeroFilter]
+  OR: [BlockHeroFilter]
+  backgroundImage_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  ctaText: String
+  ctaText_contains: String
+  ctaText_exists: Boolean
+  ctaText_in: [String]
+  ctaText_not: String
+  ctaText_not_contains: String
+  ctaText_not_in: [String]
+  ctaUrl: String
+  ctaUrl_contains: String
+  ctaUrl_exists: Boolean
+  ctaUrl_in: [String]
+  ctaUrl_not: String
+  ctaUrl_not_contains: String
+  ctaUrl_not_in: [String]
+  internalTitle: String
+  internalTitle_contains: String
+  internalTitle_exists: Boolean
+  internalTitle_in: [String]
+  internalTitle_not: String
+  internalTitle_not_contains: String
+  internalTitle_not_in: [String]
+  subtitle: String
+  subtitle_contains: String
+  subtitle_exists: Boolean
+  subtitle_in: [String]
+  subtitle_not: String
+  subtitle_not_contains: String
+  subtitle_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type BlockHeroLinkingCollections {
+  blockWrapperCollection(limit: Int = 100, locale: String, order: [BlockHeroLinkingCollectionsBlockWrapperCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockWrapperCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum BlockHeroLinkingCollectionsBlockWrapperCollectionOrder {
+  backgroundColor_ASC
+  backgroundColor_DESC
+  name_ASC
+  name_DESC
+  paddingBottom_ASC
+  paddingBottom_DESC
+  paddingTop_ASC
+  paddingTop_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  width_ASC
+  width_DESC
+}
+
+enum BlockHeroOrder {
+  ctaText_ASC
+  ctaText_DESC
+  ctaUrl_ASC
+  ctaUrl_DESC
+  internalTitle_ASC
+  internalTitle_DESC
+  subtitle_ASC
+  subtitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumnItem)
+"""
+type BlockTextColumnItem implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): BlockTextColumnItemLinkingCollections
+  sys: Sys!
+  text(locale: String, useFallbackLocale: Boolean): BlockTextColumnItemText
+  title(locale: String, useFallbackLocale: Boolean): String
+}
+
+type BlockTextColumnItemCollection {
+  items: [BlockTextColumnItem]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input BlockTextColumnItemFilter {
+  AND: [BlockTextColumnItemFilter]
+  OR: [BlockTextColumnItemFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  text_contains: String
+  text_exists: Boolean
+  text_not_contains: String
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type BlockTextColumnItemLinkingCollections {
+  blockFaQsCollection(limit: Int = 100, locale: String, order: [BlockTextColumnItemLinkingCollectionsBlockFaQsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockFaQsCollection
+  blockTextColumnsCollection(limit: Int = 100, locale: String, order: [BlockTextColumnItemLinkingCollectionsBlockTextColumnsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockTextColumnsCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum BlockTextColumnItemLinkingCollectionsBlockFaQsCollectionOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum BlockTextColumnItemLinkingCollectionsBlockTextColumnsCollectionOrder {
+  internalTitle_ASC
+  internalTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum BlockTextColumnItemOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type BlockTextColumnItemText {
+  json: JSON!
+  links: BlockTextColumnItemTextLinks!
+}
+
+type BlockTextColumnItemTextAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type BlockTextColumnItemTextEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type BlockTextColumnItemTextLinks {
+  assets: BlockTextColumnItemTextAssets!
+  entries: BlockTextColumnItemTextEntries!
+  resources: BlockTextColumnItemTextResources!
+}
+
+type BlockTextColumnItemTextResources {
+  block: [BlockTextColumnItemTextResourcesBlock!]!
+  hyperlink: [BlockTextColumnItemTextResourcesHyperlink!]!
+  inline: [BlockTextColumnItemTextResourcesInline!]!
+}
+
+type BlockTextColumnItemTextResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type BlockTextColumnItemTextResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type BlockTextColumnItemTextResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumns)
+"""
+type BlockTextColumns implements Entry & _Node {
+  _id: ID!
+  columns(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: BlockTextColumnItemFilter): BlockTextColumnItem
+  contentfulMetadata: ContentfulMetadata!
+  internalTitle(locale: String, useFallbackLocale: Boolean): String
+  linkedFrom(allowedLocales: [String]): BlockTextColumnsLinkingCollections
+  sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
+}
+
+type BlockTextColumnsCollection {
+  items: [BlockTextColumns]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input BlockTextColumnsFilter {
+  AND: [BlockTextColumnsFilter]
+  OR: [BlockTextColumnsFilter]
+  columns: cfBlockTextColumnItemNestedFilter
+  columns_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  internalTitle: String
+  internalTitle_contains: String
+  internalTitle_exists: Boolean
+  internalTitle_in: [String]
+  internalTitle_not: String
+  internalTitle_not_contains: String
+  internalTitle_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type BlockTextColumnsLinkingCollections {
+  blockWrapperCollection(limit: Int = 100, locale: String, order: [BlockTextColumnsLinkingCollectionsBlockWrapperCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): BlockWrapperCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum BlockTextColumnsLinkingCollectionsBlockWrapperCollectionOrder {
+  backgroundColor_ASC
+  backgroundColor_DESC
+  name_ASC
+  name_DESC
+  paddingBottom_ASC
+  paddingBottom_DESC
+  paddingTop_ASC
+  paddingTop_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  width_ASC
+  width_DESC
+}
+
+enum BlockTextColumnsOrder {
+  internalTitle_ASC
+  internalTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper)
+"""
+type BlockWrapper implements Entry & _Node {
+  _id: ID!
+  backgroundColor(locale: String, useFallbackLocale: Boolean): String
+  backgroundImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  content(locale: String, preview: Boolean, useFallbackLocale: Boolean): BlockWrapperContent
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): BlockWrapperLinkingCollections
+  name(locale: String, useFallbackLocale: Boolean): String
+  paddingBottom(locale: String, useFallbackLocale: Boolean): String
+  paddingTop(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+  width(locale: String, useFallbackLocale: Boolean): String
+}
+
+type BlockWrapperCollection {
+  items: [BlockWrapper]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+union BlockWrapperContent = BlockFaQs | BlockHero | BlockTextColumns
+
+input BlockWrapperFilter {
+  AND: [BlockWrapperFilter]
+  OR: [BlockWrapperFilter]
+  backgroundColor: String
+  backgroundColor_contains: String
+  backgroundColor_exists: Boolean
+  backgroundColor_in: [String]
+  backgroundColor_not: String
+  backgroundColor_not_contains: String
+  backgroundColor_not_in: [String]
+  backgroundImage_exists: Boolean
+  content_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  paddingBottom: String
+  paddingBottom_contains: String
+  paddingBottom_exists: Boolean
+  paddingBottom_in: [String]
+  paddingBottom_not: String
+  paddingBottom_not_contains: String
+  paddingBottom_not_in: [String]
+  paddingTop: String
+  paddingTop_contains: String
+  paddingTop_exists: Boolean
+  paddingTop_in: [String]
+  paddingTop_not: String
+  paddingTop_not_contains: String
+  paddingTop_not_in: [String]
+  sys: SysFilter
+  width: String
+  width_contains: String
+  width_exists: Boolean
+  width_in: [String]
+  width_not: String
+  width_not_contains: String
+  width_not_in: [String]
+}
+
+type BlockWrapperLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageBuilderCollection(limit: Int = 100, locale: String, order: [BlockWrapperLinkingCollectionsPageBuilderCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageBuilderCollection
+}
+
+enum BlockWrapperLinkingCollectionsPageBuilderCollectionOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum BlockWrapperOrder {
+  backgroundColor_ASC
+  backgroundColor_DESC
+  name_ASC
+  name_DESC
+  paddingBottom_ASC
+  paddingBottom_DESC
+  paddingTop_ASC
+  paddingTop_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
   width_ASC
   width_DESC
 }
@@ -1082,6 +1609,96 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBuilder)
+"""
+type PageBuilder implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): PageBuilderLinkingCollections
+  sectionsCollection(limit: Int = 100, locale: String, order: [PageBuilderSectionsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockWrapperFilter): PageBuilderSectionsCollection
+  slug(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
+}
+
+type PageBuilderCollection {
+  items: [PageBuilder]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageBuilderFilter {
+  AND: [PageBuilderFilter]
+  OR: [PageBuilderFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sections: cfBlockWrapperNestedFilter
+  sectionsCollection_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type PageBuilderLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum PageBuilderOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type PageBuilderSectionsCollection {
+  items: [BlockWrapper]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum PageBuilderSectionsCollectionOrder {
+  backgroundColor_ASC
+  backgroundColor_DESC
+  name_ASC
+  name_DESC
+  paddingBottom_ASC
+  paddingBottom_DESC
+  paddingTop_ASC
+  paddingTop_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  width_ASC
+  width_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageLanding)
 """
 type PageLanding implements Entry & _Node {
@@ -1146,6 +1763,16 @@ type Query {
   _nodes(ids: [ID!]!, locale: String, preview: Boolean, useFallbackLocale: Boolean): [_Node]!
   asset(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: AssetFilter): AssetCollection
+  blockFaQs(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): BlockFaQs
+  blockFaQsCollection(limit: Int = 100, locale: String, order: [BlockFaQsOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockFaQsFilter): BlockFaQsCollection
+  blockHero(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): BlockHero
+  blockHeroCollection(limit: Int = 100, locale: String, order: [BlockHeroOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockHeroFilter): BlockHeroCollection
+  blockTextColumnItem(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): BlockTextColumnItem
+  blockTextColumnItemCollection(limit: Int = 100, locale: String, order: [BlockTextColumnItemOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockTextColumnItemFilter): BlockTextColumnItemCollection
+  blockTextColumns(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): BlockTextColumns
+  blockTextColumnsCollection(limit: Int = 100, locale: String, order: [BlockTextColumnsOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockTextColumnsFilter): BlockTextColumnsCollection
+  blockWrapper(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): BlockWrapper
+  blockWrapperCollection(limit: Int = 100, locale: String, order: [BlockWrapperOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlockWrapperFilter): BlockWrapperCollection
   category(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Category
   categoryCollection(limit: Int = 100, locale: String, order: [CategoryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: CategoryFilter): CategoryCollection
   componentAuthor(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ComponentAuthor
@@ -1161,6 +1788,8 @@ type Query {
   notaDeImprensaCollection(limit: Int = 100, locale: String, order: [NotaDeImprensaOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: NotaDeImprensaFilter): NotaDeImprensaCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageBlogPostFilter): PageBlogPostCollection
+  pageBuilder(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): PageBuilder
+  pageBuilderCollection(limit: Int = 100, locale: String, order: [PageBuilderOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageBuilderFilter): PageBuilderCollection
   pageLanding(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageLandingFilter): PageLandingCollection
   staticPage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): StaticPage
@@ -1409,6 +2038,67 @@ enum VehicleOrder {
 
 interface _Node {
   _id: ID!
+}
+
+input cfBlockTextColumnItemNestedFilter {
+  AND: [cfBlockTextColumnItemNestedFilter]
+  OR: [cfBlockTextColumnItemNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  text_contains: String
+  text_exists: Boolean
+  text_not_contains: String
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+input cfBlockWrapperNestedFilter {
+  AND: [cfBlockWrapperNestedFilter]
+  OR: [cfBlockWrapperNestedFilter]
+  backgroundColor: String
+  backgroundColor_contains: String
+  backgroundColor_exists: Boolean
+  backgroundColor_in: [String]
+  backgroundColor_not: String
+  backgroundColor_not_contains: String
+  backgroundColor_not_in: [String]
+  backgroundImage_exists: Boolean
+  content_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  paddingBottom: String
+  paddingBottom_contains: String
+  paddingBottom_exists: Boolean
+  paddingBottom_in: [String]
+  paddingBottom_not: String
+  paddingBottom_not_contains: String
+  paddingBottom_not_in: [String]
+  paddingTop: String
+  paddingTop_contains: String
+  paddingTop_exists: Boolean
+  paddingTop_in: [String]
+  paddingTop_not: String
+  paddingTop_not_contains: String
+  paddingTop_not_in: [String]
+  sys: SysFilter
+  width: String
+  width_contains: String
+  width_exists: Boolean
+  width_in: [String]
+  width_not: String
+  width_not_contains: String
+  width_not_in: [String]
 }
 
 input cfCategoryNestedFilter {

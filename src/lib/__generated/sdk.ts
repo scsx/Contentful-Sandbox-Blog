@@ -180,11 +180,31 @@ export type AssetFilter = {
 
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
+  blockHeroCollection?: Maybe<BlockHeroCollection>;
+  blockWrapperCollection?: Maybe<BlockWrapperCollection>;
   componentAuthorCollection?: Maybe<ComponentAuthorCollection>;
   componentRichImageCollection?: Maybe<ComponentRichImageCollection>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
   entryCollection?: Maybe<EntryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+};
+
+
+export type AssetLinkingCollectionsBlockHeroCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type AssetLinkingCollectionsBlockWrapperCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -251,6 +271,830 @@ export enum AssetOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   UrlAsc = 'url_ASC',
   UrlDesc = 'url_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockFaQs) */
+export type BlockFaQs = Entry & _Node & {
+  __typename?: 'BlockFaQs';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  itemsCollection?: Maybe<BlockFaQsItemsCollection>;
+  linkedFrom?: Maybe<BlockFaQsLinkingCollections>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockFaQs) */
+export type BlockFaQsItemsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockFaQsItemsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockTextColumnItemFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockFaQs) */
+export type BlockFaQsLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockFaQs) */
+export type BlockFaQsTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type BlockFaQsCollection = {
+  __typename?: 'BlockFaQsCollection';
+  items: Array<Maybe<BlockFaQs>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlockFaQsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlockFaQsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlockFaQsFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  items?: InputMaybe<CfBlockTextColumnItemNestedFilter>;
+  itemsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlockFaQsItemsCollection = {
+  __typename?: 'BlockFaQsItemsCollection';
+  items: Array<Maybe<BlockTextColumnItem>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum BlockFaQsItemsCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type BlockFaQsLinkingCollections = {
+  __typename?: 'BlockFaQsLinkingCollections';
+  blockWrapperCollection?: Maybe<BlockWrapperCollection>;
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type BlockFaQsLinkingCollectionsBlockWrapperCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockFaQsLinkingCollectionsBlockWrapperCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type BlockFaQsLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum BlockFaQsLinkingCollectionsBlockWrapperCollectionOrder {
+  BackgroundColorAsc = 'backgroundColor_ASC',
+  BackgroundColorDesc = 'backgroundColor_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PaddingBottomAsc = 'paddingBottom_ASC',
+  PaddingBottomDesc = 'paddingBottom_DESC',
+  PaddingTopAsc = 'paddingTop_ASC',
+  PaddingTopDesc = 'paddingTop_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
+}
+
+export enum BlockFaQsOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHero = Entry & _Node & {
+  __typename?: 'BlockHero';
+  _id: Scalars['ID']['output'];
+  backgroundImage?: Maybe<Asset>;
+  contentfulMetadata: ContentfulMetadata;
+  ctaText?: Maybe<Scalars['String']['output']>;
+  ctaUrl?: Maybe<Scalars['String']['output']>;
+  internalTitle?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<BlockHeroLinkingCollections>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroBackgroundImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroCtaTextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroCtaUrlArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroInternalTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroSubtitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockHero) */
+export type BlockHeroTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type BlockHeroCollection = {
+  __typename?: 'BlockHeroCollection';
+  items: Array<Maybe<BlockHero>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlockHeroFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlockHeroFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlockHeroFilter>>>;
+  backgroundImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  ctaText?: InputMaybe<Scalars['String']['input']>;
+  ctaText_contains?: InputMaybe<Scalars['String']['input']>;
+  ctaText_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  ctaText_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  ctaText_not?: InputMaybe<Scalars['String']['input']>;
+  ctaText_not_contains?: InputMaybe<Scalars['String']['input']>;
+  ctaText_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  ctaUrl?: InputMaybe<Scalars['String']['input']>;
+  ctaUrl_contains?: InputMaybe<Scalars['String']['input']>;
+  ctaUrl_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  ctaUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  ctaUrl_not?: InputMaybe<Scalars['String']['input']>;
+  ctaUrl_not_contains?: InputMaybe<Scalars['String']['input']>;
+  ctaUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  internalTitle?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_contains?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  internalTitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  internalTitle_not?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  subtitle_contains?: InputMaybe<Scalars['String']['input']>;
+  subtitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  subtitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  subtitle_not?: InputMaybe<Scalars['String']['input']>;
+  subtitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  subtitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlockHeroLinkingCollections = {
+  __typename?: 'BlockHeroLinkingCollections';
+  blockWrapperCollection?: Maybe<BlockWrapperCollection>;
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type BlockHeroLinkingCollectionsBlockWrapperCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockHeroLinkingCollectionsBlockWrapperCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type BlockHeroLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum BlockHeroLinkingCollectionsBlockWrapperCollectionOrder {
+  BackgroundColorAsc = 'backgroundColor_ASC',
+  BackgroundColorDesc = 'backgroundColor_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PaddingBottomAsc = 'paddingBottom_ASC',
+  PaddingBottomDesc = 'paddingBottom_DESC',
+  PaddingTopAsc = 'paddingTop_ASC',
+  PaddingTopDesc = 'paddingTop_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
+}
+
+export enum BlockHeroOrder {
+  CtaTextAsc = 'ctaText_ASC',
+  CtaTextDesc = 'ctaText_DESC',
+  CtaUrlAsc = 'ctaUrl_ASC',
+  CtaUrlDesc = 'ctaUrl_DESC',
+  InternalTitleAsc = 'internalTitle_ASC',
+  InternalTitleDesc = 'internalTitle_DESC',
+  SubtitleAsc = 'subtitle_ASC',
+  SubtitleDesc = 'subtitle_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumnItem) */
+export type BlockTextColumnItem = Entry & _Node & {
+  __typename?: 'BlockTextColumnItem';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<BlockTextColumnItemLinkingCollections>;
+  sys: Sys;
+  text?: Maybe<BlockTextColumnItemText>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumnItem) */
+export type BlockTextColumnItemLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumnItem) */
+export type BlockTextColumnItemTextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumnItem) */
+export type BlockTextColumnItemTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type BlockTextColumnItemCollection = {
+  __typename?: 'BlockTextColumnItemCollection';
+  items: Array<Maybe<BlockTextColumnItem>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlockTextColumnItemFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlockTextColumnItemFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlockTextColumnItemFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sys?: InputMaybe<SysFilter>;
+  text_contains?: InputMaybe<Scalars['String']['input']>;
+  text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlockTextColumnItemLinkingCollections = {
+  __typename?: 'BlockTextColumnItemLinkingCollections';
+  blockFaQsCollection?: Maybe<BlockFaQsCollection>;
+  blockTextColumnsCollection?: Maybe<BlockTextColumnsCollection>;
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type BlockTextColumnItemLinkingCollectionsBlockFaQsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockTextColumnItemLinkingCollectionsBlockFaQsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type BlockTextColumnItemLinkingCollectionsBlockTextColumnsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockTextColumnItemLinkingCollectionsBlockTextColumnsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type BlockTextColumnItemLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum BlockTextColumnItemLinkingCollectionsBlockFaQsCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum BlockTextColumnItemLinkingCollectionsBlockTextColumnsCollectionOrder {
+  InternalTitleAsc = 'internalTitle_ASC',
+  InternalTitleDesc = 'internalTitle_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum BlockTextColumnItemOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type BlockTextColumnItemText = {
+  __typename?: 'BlockTextColumnItemText';
+  json: Scalars['JSON']['output'];
+  links: BlockTextColumnItemTextLinks;
+};
+
+export type BlockTextColumnItemTextAssets = {
+  __typename?: 'BlockTextColumnItemTextAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type BlockTextColumnItemTextEntries = {
+  __typename?: 'BlockTextColumnItemTextEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type BlockTextColumnItemTextLinks = {
+  __typename?: 'BlockTextColumnItemTextLinks';
+  assets: BlockTextColumnItemTextAssets;
+  entries: BlockTextColumnItemTextEntries;
+  resources: BlockTextColumnItemTextResources;
+};
+
+export type BlockTextColumnItemTextResources = {
+  __typename?: 'BlockTextColumnItemTextResources';
+  block: Array<BlockTextColumnItemTextResourcesBlock>;
+  hyperlink: Array<BlockTextColumnItemTextResourcesHyperlink>;
+  inline: Array<BlockTextColumnItemTextResourcesInline>;
+};
+
+export type BlockTextColumnItemTextResourcesBlock = ResourceLink & {
+  __typename?: 'BlockTextColumnItemTextResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type BlockTextColumnItemTextResourcesHyperlink = ResourceLink & {
+  __typename?: 'BlockTextColumnItemTextResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type BlockTextColumnItemTextResourcesInline = ResourceLink & {
+  __typename?: 'BlockTextColumnItemTextResourcesInline';
+  sys: ResourceSys;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumns) */
+export type BlockTextColumns = Entry & _Node & {
+  __typename?: 'BlockTextColumns';
+  _id: Scalars['ID']['output'];
+  columns?: Maybe<BlockTextColumnItem>;
+  contentfulMetadata: ContentfulMetadata;
+  internalTitle?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<BlockTextColumnsLinkingCollections>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumns) */
+export type BlockTextColumnsColumnsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockTextColumnItemFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumns) */
+export type BlockTextColumnsInternalTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumns) */
+export type BlockTextColumnsLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockTextColumns) */
+export type BlockTextColumnsTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type BlockTextColumnsCollection = {
+  __typename?: 'BlockTextColumnsCollection';
+  items: Array<Maybe<BlockTextColumns>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlockTextColumnsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlockTextColumnsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlockTextColumnsFilter>>>;
+  columns?: InputMaybe<CfBlockTextColumnItemNestedFilter>;
+  columns_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  internalTitle?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_contains?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  internalTitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  internalTitle_not?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  internalTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlockTextColumnsLinkingCollections = {
+  __typename?: 'BlockTextColumnsLinkingCollections';
+  blockWrapperCollection?: Maybe<BlockWrapperCollection>;
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type BlockTextColumnsLinkingCollectionsBlockWrapperCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockTextColumnsLinkingCollectionsBlockWrapperCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type BlockTextColumnsLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum BlockTextColumnsLinkingCollectionsBlockWrapperCollectionOrder {
+  BackgroundColorAsc = 'backgroundColor_ASC',
+  BackgroundColorDesc = 'backgroundColor_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PaddingBottomAsc = 'paddingBottom_ASC',
+  PaddingBottomDesc = 'paddingBottom_DESC',
+  PaddingTopAsc = 'paddingTop_ASC',
+  PaddingTopDesc = 'paddingTop_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
+}
+
+export enum BlockTextColumnsOrder {
+  InternalTitleAsc = 'internalTitle_ASC',
+  InternalTitleDesc = 'internalTitle_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapper = Entry & _Node & {
+  __typename?: 'BlockWrapper';
+  _id: Scalars['ID']['output'];
+  backgroundColor?: Maybe<Scalars['String']['output']>;
+  backgroundImage?: Maybe<Asset>;
+  content?: Maybe<BlockWrapperContent>;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<BlockWrapperLinkingCollections>;
+  name?: Maybe<Scalars['String']['output']>;
+  paddingBottom?: Maybe<Scalars['String']['output']>;
+  paddingTop?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  width?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperBackgroundColorArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperBackgroundImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperContentArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperPaddingBottomArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperPaddingTopArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/blockWrapper) */
+export type BlockWrapperWidthArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type BlockWrapperCollection = {
+  __typename?: 'BlockWrapperCollection';
+  items: Array<Maybe<BlockWrapper>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type BlockWrapperContent = BlockFaQs | BlockHero | BlockTextColumns;
+
+export type BlockWrapperFilter = {
+  AND?: InputMaybe<Array<InputMaybe<BlockWrapperFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<BlockWrapperFilter>>>;
+  backgroundColor?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_contains?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  backgroundColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  backgroundColor_not?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  backgroundImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  content_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  name_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingBottom?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  paddingBottom_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingBottom_not?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_not_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingTop?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  paddingTop_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingTop_not?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_not_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  width?: InputMaybe<Scalars['String']['input']>;
+  width_contains?: InputMaybe<Scalars['String']['input']>;
+  width_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  width_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  width_not?: InputMaybe<Scalars['String']['input']>;
+  width_not_contains?: InputMaybe<Scalars['String']['input']>;
+  width_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BlockWrapperLinkingCollections = {
+  __typename?: 'BlockWrapperLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageBuilderCollection?: Maybe<PageBuilderCollection>;
+};
+
+
+export type BlockWrapperLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type BlockWrapperLinkingCollectionsPageBuilderCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockWrapperLinkingCollectionsPageBuilderCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum BlockWrapperLinkingCollectionsPageBuilderCollectionOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum BlockWrapperOrder {
+  BackgroundColorAsc = 'backgroundColor_ASC',
+  BackgroundColorDesc = 'backgroundColor_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PaddingBottomAsc = 'paddingBottom_ASC',
+  PaddingBottomDesc = 'paddingBottom_DESC',
+  PaddingTopAsc = 'paddingTop_ASC',
+  PaddingTopDesc = 'paddingTop_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   WidthAsc = 'width_ASC',
   WidthDesc = 'width_DESC'
 }
@@ -1586,6 +2430,139 @@ export enum PageBlogPostRelatedBlogPostsCollectionOrder {
   TitleDesc = 'title_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBuilder) */
+export type PageBuilder = Entry & _Node & {
+  __typename?: 'PageBuilder';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<PageBuilderLinkingCollections>;
+  sectionsCollection?: Maybe<PageBuilderSectionsCollection>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBuilder) */
+export type PageBuilderLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBuilder) */
+export type PageBuilderSectionsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<PageBuilderSectionsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockWrapperFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBuilder) */
+export type PageBuilderSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageBuilder) */
+export type PageBuilderTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type PageBuilderCollection = {
+  __typename?: 'PageBuilderCollection';
+  items: Array<Maybe<PageBuilder>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type PageBuilderFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PageBuilderFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PageBuilderFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sections?: InputMaybe<CfBlockWrapperNestedFilter>;
+  sectionsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type PageBuilderLinkingCollections = {
+  __typename?: 'PageBuilderLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageBuilderLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export enum PageBuilderOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type PageBuilderSectionsCollection = {
+  __typename?: 'PageBuilderSectionsCollection';
+  items: Array<Maybe<BlockWrapper>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum PageBuilderSectionsCollectionOrder {
+  BackgroundColorAsc = 'backgroundColor_ASC',
+  BackgroundColorDesc = 'backgroundColor_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PaddingBottomAsc = 'paddingBottom_ASC',
+  PaddingBottomDesc = 'paddingBottom_DESC',
+  PaddingTopAsc = 'paddingTop_ASC',
+  PaddingTopDesc = 'paddingTop_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
+}
+
 /** [See type definition](https://app.contentful.com/spaces/g4fee19rgtk9/content_types/pageLanding) */
 export type PageLanding = Entry & _Node & {
   __typename?: 'PageLanding';
@@ -1688,6 +2665,16 @@ export type Query = {
   _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  blockFaQs?: Maybe<BlockFaQs>;
+  blockFaQsCollection?: Maybe<BlockFaQsCollection>;
+  blockHero?: Maybe<BlockHero>;
+  blockHeroCollection?: Maybe<BlockHeroCollection>;
+  blockTextColumnItem?: Maybe<BlockTextColumnItem>;
+  blockTextColumnItemCollection?: Maybe<BlockTextColumnItemCollection>;
+  blockTextColumns?: Maybe<BlockTextColumns>;
+  blockTextColumnsCollection?: Maybe<BlockTextColumnsCollection>;
+  blockWrapper?: Maybe<BlockWrapper>;
+  blockWrapperCollection?: Maybe<BlockWrapperCollection>;
   category?: Maybe<Category>;
   categoryCollection?: Maybe<CategoryCollection>;
   componentAuthor?: Maybe<ComponentAuthor>;
@@ -1703,6 +2690,8 @@ export type Query = {
   notaDeImprensaCollection?: Maybe<NotaDeImprensaCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+  pageBuilder?: Maybe<PageBuilder>;
+  pageBuilderCollection?: Maybe<PageBuilderCollection>;
   pageLanding?: Maybe<PageLanding>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
   staticPage?: Maybe<StaticPage>;
@@ -1744,6 +2733,101 @@ export type QueryAssetCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetFilter>;
+};
+
+
+export type QueryBlockFaQsArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryBlockFaQsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockFaQsOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockFaQsFilter>;
+};
+
+
+export type QueryBlockHeroArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryBlockHeroCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockHeroOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockHeroFilter>;
+};
+
+
+export type QueryBlockTextColumnItemArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryBlockTextColumnItemCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockTextColumnItemOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockTextColumnItemFilter>;
+};
+
+
+export type QueryBlockTextColumnsArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryBlockTextColumnsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockTextColumnsOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockTextColumnsFilter>;
+};
+
+
+export type QueryBlockWrapperArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryBlockWrapperCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<BlockWrapperOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<BlockWrapperFilter>;
 };
 
 
@@ -1888,6 +2972,25 @@ export type QueryPageBlogPostCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<PageBlogPostFilter>;
+};
+
+
+export type QueryPageBuilderArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryPageBuilderCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<PageBuilderOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<PageBuilderFilter>;
 };
 
 
@@ -2272,6 +3375,67 @@ export type _Node = {
   _id: Scalars['ID']['output'];
 };
 
+export type CfBlockTextColumnItemNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfBlockTextColumnItemNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfBlockTextColumnItemNestedFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sys?: InputMaybe<SysFilter>;
+  text_contains?: InputMaybe<Scalars['String']['input']>;
+  text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type CfBlockWrapperNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfBlockWrapperNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfBlockWrapperNestedFilter>>>;
+  backgroundColor?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_contains?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  backgroundColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  backgroundColor_not?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  backgroundColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  backgroundImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  content_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  name_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingBottom?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  paddingBottom_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingBottom_not?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_not_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingBottom_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingTop?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  paddingTop_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  paddingTop_not?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_not_contains?: InputMaybe<Scalars['String']['input']>;
+  paddingTop_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  width?: InputMaybe<Scalars['String']['input']>;
+  width_contains?: InputMaybe<Scalars['String']['input']>;
+  width_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  width_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  width_not?: InputMaybe<Scalars['String']['input']>;
+  width_not_contains?: InputMaybe<Scalars['String']['input']>;
+  width_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type CfCategoryNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfCategoryNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfCategoryNestedFilter>>>;
@@ -2463,10 +3627,10 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, featuredImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null, category?: { __typename?: 'Category', name?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } } | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
+  ) | null, category?: { __typename?: 'Category', name?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string } } | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'BlockFaQs' } | { __typename?: 'BlockHero' } | { __typename?: 'BlockTextColumnItem' } | { __typename?: 'BlockTextColumns' } | { __typename?: 'BlockWrapper' } | { __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Countries' } | { __typename?: 'NotaDeImprensa' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | { __typename?: 'Vehicle' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Countries' } | { __typename?: 'NotaDeImprensa' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageBuilder' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | { __typename?: 'Vehicle' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -2496,6 +3660,65 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
       { __typename?: 'PageBlogPost' }
       & PageBlogPostFieldsFragment
     ) | null> } | null };
+
+export type BlockTextColumnItemFieldsFragment = { __typename: 'BlockTextColumnItem', title?: string | null, sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'BlockTextColumnItemText', json: any } | null };
+
+export type BlockHeroFieldsFragment = { __typename: 'BlockHero', internalTitle?: string | null, title?: string | null, subtitle?: string | null, ctaText?: string | null, ctaUrl?: string | null, sys: { __typename?: 'Sys', id: string }, backgroundImage?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null };
+
+export type BlockTextColumnsFieldsFragment = { __typename: 'BlockTextColumns', internalTitle?: string | null, title?: string | null, sys: { __typename?: 'Sys', id: string }, columns?: (
+    { __typename?: 'BlockTextColumnItem' }
+    & BlockTextColumnItemFieldsFragment
+  ) | null };
+
+export type BlockFaQsFieldsFragment = { __typename: 'BlockFaQs', title?: string | null, sys: { __typename?: 'Sys', id: string }, itemsCollection?: { __typename?: 'BlockFaQsItemsCollection', items: Array<(
+      { __typename?: 'BlockTextColumnItem' }
+      & BlockTextColumnItemFieldsFragment
+    ) | null> } | null };
+
+export type BlockWrapperFieldsFragment = { __typename: 'BlockWrapper', name?: string | null, width?: string | null, backgroundColor?: string | null, paddingTop?: string | null, paddingBottom?: string | null, sys: { __typename?: 'Sys', id: string }, backgroundImage?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null, content?: (
+    { __typename: 'BlockFaQs' }
+    & BlockFaQsFieldsFragment
+  ) | (
+    { __typename: 'BlockHero' }
+    & BlockHeroFieldsFragment
+  ) | (
+    { __typename: 'BlockTextColumns' }
+    & BlockTextColumnsFieldsFragment
+  ) | null };
+
+export type PageBuilderFieldsFragment = { __typename: 'PageBuilder', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, sectionsCollection?: { __typename?: 'PageBuilderSectionsCollection', items: Array<(
+      { __typename?: 'BlockWrapper' }
+      & BlockWrapperFieldsFragment
+    ) | null> } | null };
+
+export type PageBuilderQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type PageBuilderQuery = { __typename?: 'Query', pageBuilderCollection?: { __typename?: 'PageBuilderCollection', items: Array<(
+      { __typename?: 'PageBuilder' }
+      & PageBuilderFieldsFragment
+    ) | null> } | null };
+
+export type PageBuilderCollectionQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<Array<InputMaybe<PageBuilderOrder>> | InputMaybe<PageBuilderOrder>>;
+  where?: InputMaybe<PageBuilderFilter>;
+}>;
+
+
+export type PageBuilderCollectionQuery = { __typename?: 'Query', pageBuilderCollection?: { __typename?: 'PageBuilderCollection', items: Array<{ __typename?: 'PageBuilder', slug?: string | null } | null> } | null };
 
 export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalName?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
     { __typename?: 'ComponentSeo' }
@@ -2549,10 +3772,10 @@ export type SitemapPagesQuery = (
   & SitemapPagesFieldsFragment
 );
 
-export type StaticPageFieldsFragment = { __typename: 'StaticPage', tituloInterno?: string | null, tituloExterno?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, richText?: { __typename?: 'StaticPageRichText', json: any, links: { __typename?: 'StaticPageRichTextLinks', entries: { __typename?: 'StaticPageRichTextEntries', block: Array<{ __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
+export type StaticPageFieldsFragment = { __typename: 'StaticPage', tituloInterno?: string | null, tituloExterno?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, richText?: { __typename?: 'StaticPageRichText', json: any, links: { __typename?: 'StaticPageRichTextLinks', entries: { __typename?: 'StaticPageRichTextEntries', block: Array<{ __typename?: 'BlockFaQs' } | { __typename?: 'BlockHero' } | { __typename?: 'BlockTextColumnItem' } | { __typename?: 'BlockTextColumns' } | { __typename?: 'BlockWrapper' } | { __typename?: 'Category' } | { __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Countries' } | { __typename?: 'NotaDeImprensa' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | { __typename?: 'Vehicle' } | null> } } } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'Countries' } | { __typename?: 'NotaDeImprensa' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageBuilder' } | { __typename?: 'PageLanding' } | { __typename?: 'StaticPage' } | { __typename?: 'Vehicle' } | null> } } } | null };
 
 export type StaticPageQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -2699,6 +3922,99 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   relatedBlogPostsCollection(limit: 2) {
     items {
       ...ReferencePageBlogPostFields
+    }
+  }
+}
+    `;
+export const BlockHeroFieldsFragmentDoc = gql`
+    fragment BlockHeroFields on BlockHero {
+  __typename
+  sys {
+    id
+  }
+  internalTitle
+  title
+  subtitle
+  ctaText
+  ctaUrl
+  backgroundImage {
+    ...ImageFields
+  }
+}
+    `;
+export const BlockTextColumnItemFieldsFragmentDoc = gql`
+    fragment BlockTextColumnItemFields on BlockTextColumnItem {
+  __typename
+  sys {
+    id
+  }
+  title
+  text {
+    json
+  }
+}
+    `;
+export const BlockFaQsFieldsFragmentDoc = gql`
+    fragment BlockFaQsFields on BlockFaQs {
+  __typename
+  sys {
+    id
+  }
+  title
+  itemsCollection(limit: 10) {
+    items {
+      ...BlockTextColumnItemFields
+    }
+  }
+}
+    `;
+export const BlockTextColumnsFieldsFragmentDoc = gql`
+    fragment BlockTextColumnsFields on BlockTextColumns {
+  __typename
+  sys {
+    id
+  }
+  internalTitle
+  title
+  columns {
+    ...BlockTextColumnItemFields
+  }
+}
+    `;
+export const BlockWrapperFieldsFragmentDoc = gql`
+    fragment BlockWrapperFields on BlockWrapper {
+  __typename
+  sys {
+    id
+  }
+  name
+  width
+  backgroundColor
+  paddingTop
+  paddingBottom
+  backgroundImage {
+    ...ImageFields
+  }
+  content {
+    __typename
+    ...BlockHeroFields
+    ...BlockFaQsFields
+    ...BlockTextColumnsFields
+  }
+}
+    `;
+export const PageBuilderFieldsFragmentDoc = gql`
+    fragment PageBuilderFields on PageBuilder {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  title
+  slug
+  sectionsCollection(limit: 20) {
+    items {
+      ...BlockWrapperFields
     }
   }
 }
@@ -2865,6 +4181,41 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
+export const PageBuilderDocument = gql`
+    query pageBuilder($slug: String!, $locale: String, $preview: Boolean) {
+  pageBuilderCollection(
+    limit: 1
+    where: {slug: $slug}
+    locale: $locale
+    preview: $preview
+  ) {
+    items {
+      ...PageBuilderFields
+    }
+  }
+}
+    ${PageBuilderFieldsFragmentDoc}
+${BlockWrapperFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}
+${BlockHeroFieldsFragmentDoc}
+${BlockFaQsFieldsFragmentDoc}
+${BlockTextColumnItemFieldsFragmentDoc}
+${BlockTextColumnsFieldsFragmentDoc}`;
+export const PageBuilderCollectionDocument = gql`
+    query pageBuilderCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageBuilderOrder], $where: PageBuilderFilter) {
+  pageBuilderCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      slug
+    }
+  }
+}
+    `;
 export const PageLandingDocument = gql`
     query pageLanding($locale: String, $preview: Boolean) {
   pageLandingCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -2950,6 +4301,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pageBlogPostCollection(variables?: PageBlogPostCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PageBlogPostCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostCollectionQuery>({ document: PageBlogPostCollectionDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pageBlogPostCollection', 'query', variables);
+    },
+    pageBuilder(variables: PageBuilderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PageBuilderQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageBuilderQuery>({ document: PageBuilderDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pageBuilder', 'query', variables);
+    },
+    pageBuilderCollection(variables?: PageBuilderCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PageBuilderCollectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageBuilderCollectionQuery>({ document: PageBuilderCollectionDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pageBuilderCollection', 'query', variables);
     },
     pageLanding(variables?: PageLandingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PageLandingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageLandingQuery>({ document: PageLandingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pageLanding', 'query', variables);

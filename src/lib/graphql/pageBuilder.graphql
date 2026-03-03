@@ -1,0 +1,94 @@
+fragment BlockTextColumnItemFields on BlockTextColumnItem {
+  __typename
+  sys {
+    id
+  }
+  title
+  text {
+    json
+  }
+}
+
+fragment BlockHeroFields on BlockHero {
+  __typename
+  sys {
+    id
+  }
+  internalTitle
+  title
+  subtitle
+  ctaText
+  ctaUrl
+  backgroundImage {
+    ...ImageFields
+  }
+}
+
+fragment BlockTextColumnsFields on BlockTextColumns {
+  __typename
+  sys {
+    id
+  }
+  internalTitle
+  title
+  columns {
+    ...BlockTextColumnItemFields
+  }
+}
+
+fragment BlockFaQsFields on BlockFaQs {
+  __typename
+  sys {
+    id
+  }
+  title
+  itemsCollection(limit: 10) {
+    items {
+      ...BlockTextColumnItemFields
+    }
+  }
+}
+
+fragment BlockWrapperFields on BlockWrapper {
+  __typename
+  sys {
+    id
+  }
+  name
+  width
+  backgroundColor
+  paddingTop
+  paddingBottom
+  backgroundImage {
+    ...ImageFields
+  }
+  content {
+    __typename
+    ...BlockHeroFields
+    ...BlockFaQsFields
+    ...BlockTextColumnsFields
+  }
+}
+
+fragment PageBuilderFields on PageBuilder {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  title
+  slug
+  sectionsCollection(limit: 20) {
+    items {
+      ...BlockWrapperFields
+    }
+  }
+}
+
+query pageBuilder($slug: String!, $locale: String, $preview: Boolean) {
+  pageBuilderCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
+    items {
+      ...PageBuilderFields
+    }
+  }
+}
