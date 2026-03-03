@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { client } from '@src/lib/client';
 import { notFound } from 'next/navigation';
+
 import RichText from '@src/components/shared/rich-text/RichText';
+import { client } from '@src/lib/client';
+
 // Dizer ao ctf qual a página.
 const PAGE_SLUG = 'bose-qc-ultra';
 
