@@ -2,13 +2,14 @@ import { CSSProperties } from 'react';
 
 import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 
 import { ArticleContent, ArticleHero, ArticleTileGrid } from '@src/components/features/article';
 import { Breadcrumbs } from '@src/components/features/breadcrumbs/Breadcrumbs';
-import { CtfImage, CtfRichText } from '@src/components/features/contentful';
+import FAQs from '@src/components/page-builder/FAQs';
+import Hero from '@src/components/page-builder/Hero';
+import TextColumns from '@src/components/page-builder/TextColumns';
 import { Container } from '@src/components/shared/container';
 import initTranslations from '@src/i18n';
 import { defaultLocale, locales } from '@src/i18n/config';
@@ -71,71 +72,15 @@ const renderBlockContent = (section: BlockWrapperFieldsFragment) => {
   }
 
   if (block.__typename === 'BlockFaQs') {
-    return (
-      <div>
-        {block.title && <h2 className="mb-6">{block.title}</h2>}
-        <div className="space-y-4">
-          {block.itemsCollection?.items
-            ?.filter(item => Boolean(item))
-            .map(item => {
-              if (!item) return null;
-
-              return (
-                <details key={item.sys.id} className="rounded-xl border border-gray300 p-4">
-                  <summary className="cursor-pointer text-lg font-semibold">{item.title}</summary>
-                  {item.text?.json && (
-                    <div className="mt-3">
-                      <CtfRichText json={item.text.json} />
-                    </div>
-                  )}
-                </details>
-              );
-            })}
-        </div>
-      </div>
-    );
+    return <FAQs block={block} />;
   }
 
   if (block.__typename === 'BlockHero') {
-    return (
-      <div className="grid items-center gap-6 md:grid-cols-2">
-        <div>
-          {block.title && <h1 className="mb-3">{block.title}</h1>}
-          {block.subtitle && <p className="mb-5 text-lg text-gray600">{block.subtitle}</p>}
-          {block.ctaText && block.ctaUrl && (
-            <Link
-              href={block.ctaUrl}
-              className="inline-flex rounded-lg border border-gray900 px-5 py-3 font-semibold hover:bg-gray100">
-              {block.ctaText}
-            </Link>
-          )}
-        </div>
-        {block.backgroundImage && (
-          <CtfImage
-            {...block.backgroundImage}
-            nextImageProps={{ className: 'h-auto w-full rounded-xl object-cover' }}
-          />
-        )}
-      </div>
-    );
+    return <Hero block={block} />;
   }
 
   if (block.__typename === 'BlockTextColumns') {
-    return (
-      <div>
-        {(block.title || block.internalTitle) && (
-          <h2 className="mb-4">{block.title || block.internalTitle}</h2>
-        )}
-        {block.columns && (
-          <div className="rounded-xl border border-gray300 p-4">
-            {block.columns.title && (
-              <h3 className="mb-3 text-lg font-semibold">{block.columns.title}</h3>
-            )}
-            {block.columns.text?.json && <CtfRichText json={block.columns.text.json} />}
-          </div>
-        )}
-      </div>
-    );
+    return <TextColumns block={block} />;
   }
 
   return null;
